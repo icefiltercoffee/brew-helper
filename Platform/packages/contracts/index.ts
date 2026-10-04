@@ -1,8 +1,8 @@
 /**
  * Brew Helper — Contracts
  * The typed seams between every module. Nothing crosses a package boundary
- * except through these types. Implements Engineering-Blueprint.md §2 and
- * Reasoning-Scaffold.md §3. If a module honours these, it can be swapped freely.
+ * except through these types. Implements Architecture.md (Part 2) §2 and
+ * Extraction-Intelligence-Layer.md (Part 2, Reasoning Scaffold) §3. If a module honours these, it can be swapped freely.
  */
 
 // ---------- shared vocabulary ----------

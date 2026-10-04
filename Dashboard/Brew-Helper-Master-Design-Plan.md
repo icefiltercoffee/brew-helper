@@ -22,7 +22,7 @@ The visual layer serves the brew session. It must not conceal, replace, or simul
 |---|---|---|
 | `Product-Contracts.md` | Functional truth | Defines valid state, equipment constraints, one-plan recommendation, and learning boundaries. It is not replaced by this document. |
 | `Brew-Helper-Master-Design-Plan.md` | Experience architecture | This document. It governs the immersive dashboard, scene sequencing, functional preservation, asset contracts, and future design handoff. |
-| `Filter-Brew-Flavour-Experience-Build-Plan.md` | Superseded | Retained only as a pointer to this canonical plan, to prevent two directions drifting apart. |
+| `Filter-Brew-Flavour-Experience-Build-Plan.md` | Removed 2026-10-05 | Was only a pointer to this canonical plan. |
 | `/brew-helper-site/index.html` | Current implementation — the single dashboard surface | Functional baseline to preserve. No implementation changes are authorised by this plan alone. |
 
 ## 3. Non-negotiable functional guardrails

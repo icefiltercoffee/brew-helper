@@ -1,5 +1,5 @@
 {
-  "$comment": "Adaptive-research budgets + familiarity thresholds (Platform-Architecture §7). Tune during M5/M7.",
+  "$comment": "Adaptive-research budgets + familiarity thresholds (Architecture.md (Part 1) §7). Tune during M5/M7.",
   "familiarity": { "high": 0.75, "midLow": 0.4, "$note": ">=high: local only · mid: targeted fetch · <midLow: full research" },
   "research": { "maxSourcesPerRequest": 5, "maxLatencyMs": 6000 },
   "cache": { "fingerprintTtlHours": 168, "researchTtlHours": 168, "retrievalTtlHours": 24 },

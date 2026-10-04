@@ -9,7 +9,7 @@ import type { SearchProvider } from './search-provider';
 import type { SourceRegistry } from './source-registry';
 import { extractClaims } from './adapter';
 
-const HIGH = 0.75;   // ≥ HIGH → local only (Platform-Architecture §7)
+const HIGH = 0.75;   // ≥ HIGH → local only (Architecture.md (Part 1) §7)
 
 export function createFamiliarityRouter(): FamiliarityRouter {
   return {
