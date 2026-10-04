@@ -1,0 +1,341 @@
+<!doctype html>
+<html lang="en">
+<meta charset="utf-8">
+<title>Brew Helper — Production Low-Fi Wireframe (5 sections)</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+/* ============================================================
+   BREW HELPER — LOW-FIDELITY WIREFRAME
+   Grayscale · box-only · no brand / colour / type design.
+   5 consolidated sections. Only rectangles, circles, lines, labels, spacing.
+   ============================================================ */
+:root{
+  --ink:#3a3a3a; --mute:#6f6f6f; --faint:#9a9a9a; --ghost:#b8b8b8;
+  --line:#cfcfcf; --line2:#a9a9a9; --line3:#8a8a8a;
+  --fill:#efefef; --fill2:#e6e6e6; --fill3:#dcdcdc; --lock:#f2f2f2;
+  --page:#f6f6f6; --card:#fcfcfc; --gut:24px; --radius:2px;
+}
+*{box-sizing:border-box}
+html,body{margin:0}
+body{background:var(--page);color:var(--ink);
+  font-family:ui-monospace,"SF Mono",Menlo,Consolas,monospace;font-size:13px;line-height:1.5;padding:0 0 90px}
+.ph{color:var(--faint)}
+.rig{max-width:1360px;margin:0 auto;padding:26px 20px 0}
+.rig > h1{font-size:14px;letter-spacing:2px;color:var(--mute);font-weight:600;margin:0 0 4px}
+.rig > p.note{color:var(--faint);font-size:11px;margin:0 0 20px;max-width:820px}
+.viewport-tabs{display:flex;gap:6px;margin:0 0 8px;flex-wrap:wrap}
+.viewport-tabs a{border:1px solid var(--line2);padding:6px 12px;color:var(--mute);text-decoration:none;background:var(--card)}
+.viewport-tabs a:hover{background:var(--fill2)}
+.frame-label{display:flex;align-items:baseline;gap:12px;margin:40px 0 10px}
+.frame-label .big{font-size:12px;letter-spacing:2px;color:var(--ink);font-weight:600}
+.frame-label .dim{font-size:11px;color:var(--faint)}
+.canvas{background:var(--page);border:1px solid var(--line2);margin:0 auto;overflow:hidden}
+.canvas.desktop{width:100%;max-width:1280px}
+.canvas.tablet{width:768px;max-width:100%;border-width:6px;border-color:var(--line3);border-radius:10px}
+.canvas.mobile{width:390px;max-width:100%;border-width:8px;border-color:var(--line3);border-radius:22px}
+/* chrome */
+.appnav{display:flex;align-items:center;gap:16px;padding:14px 26px;background:var(--card);
+  border-bottom:1px solid var(--line2);position:sticky;top:0;z-index:4}
+.logo{border:1px solid var(--line3);background:var(--fill);padding:6px 12px;letter-spacing:1px;font-weight:600}
+.searchbar{flex:1;max-width:520px;border:1px solid var(--line2);background:var(--card);padding:8px 12px;color:var(--faint);display:flex;align-items:center;gap:8px}
+.searchbar .mag{width:12px;height:12px;border:1.5px solid var(--line3);border-radius:50%;flex:none}
+.avatar{width:30px;height:30px;border:1px solid var(--line3);border-radius:50%;background:var(--fill);flex:none}
+.navspace{flex:1}
+.hamburger{display:none;width:22px;height:14px;border-top:2px solid var(--line3);border-bottom:2px solid var(--line3);position:relative;flex:none}
+.hamburger:before{content:"";position:absolute;top:5px;left:0;right:0;border-top:2px solid var(--line3)}
+.canvas.mobile .appnav{padding:12px 14px;gap:10px}
+.canvas.mobile .searchbar{display:none}
+.canvas.mobile .hamburger{display:block}
+/* spine */
+.spine{padding:8px 26px 40px}
+.canvas.mobile .spine{padding:6px 14px 30px}
+.section{max-width:940px;margin:0 auto}
+.canvas.mobile .section{max-width:100%}
+.seclabel{display:flex;align-items:center;gap:10px;margin:34px 0 10px}
+.seclabel .idx{border:1px solid var(--line2);background:var(--fill);font-size:10px;padding:1px 7px;color:var(--mute)}
+.seclabel .nm{font-size:11px;letter-spacing:2px;color:var(--mute);font-weight:600}
+.seclabel .weight{margin-left:auto;font-size:10px;color:var(--ghost);border:1px dotted var(--line);padding:1px 7px}
+.connector{width:1px;height:26px;background:var(--line);margin:6px auto;position:relative}
+.connector:after{content:"";position:absolute;left:-3px;bottom:0;width:7px;height:7px;border-right:1px solid var(--line2);border-bottom:1px solid var(--line2);transform:rotate(45deg)}
+/* cards + primitives */
+.card{border:1px solid var(--line2);background:var(--card);border-radius:var(--radius);padding:20px}
+.card.pad-lg{padding:28px}
+.focal{border-width:2px;border-color:var(--line3)}
+.blk{background:var(--fill);border:1px solid var(--line);border-radius:var(--radius)}
+.line{height:9px;background:var(--fill3);border-radius:2px}
+.line.s{width:40%}.line.m{width:65%}.line.l{width:90%}.line.xs{width:24%}
+.stack>*{margin-top:8px}.stack>*:first-child{margin-top:0}
+.rowflex{display:flex;gap:var(--gut)}
+.between{display:flex;justify-content:space-between;align-items:center;gap:12px}
+.pill{border:1px solid var(--line2);background:var(--fill);border-radius:20px;padding:3px 11px;font-size:11px;color:var(--mute)}
+.chip{border:1px solid var(--line2);background:var(--card);border-radius:20px;padding:7px 14px;font-size:12px;color:var(--mute);display:inline-flex;gap:8px;align-items:center}
+.chip .o{width:12px;height:12px;border:1.5px solid var(--line3);border-radius:50%;flex:none}
+.chip.sel{background:var(--fill2);border-color:var(--line3);color:var(--ink)}
+.chip.sel .o{background:var(--line3)}
+.btn{border:1px solid var(--line3);background:var(--fill2);padding:8px 16px;font-size:12px;color:var(--ink);border-radius:var(--radius);display:inline-block}
+.btn.ghost{background:var(--card);color:var(--mute)}
+.btn.block{display:block;text-align:center}
+.hint{color:var(--faint);font-size:11px}
+.title-lg{font-size:20px;color:var(--ink);letter-spacing:.3px}
+.canvas.mobile .title-lg{font-size:18px}
+.thumb{border:1px solid var(--line2);background:var(--fill);border-radius:var(--radius);display:flex;align-items:center;justify-content:center;color:var(--ghost);font-size:11px}
+.divider{display:flex;align-items:center;gap:10px;margin:20px 0;color:var(--faint);font-size:10px;letter-spacing:1px}
+.divider:before,.divider:after{content:"";flex:1;border-top:1px dashed var(--line)}
+/* grids reflow */
+.g-3{display:grid;grid-template-columns:repeat(3,1fr);gap:var(--gut)}
+.g-2{display:grid;grid-template-columns:1fr 1fr;gap:var(--gut)}
+.bean-grid{display:grid;grid-template-columns:150px 1fr;gap:var(--gut)}
+.radar-grid{display:grid;grid-template-columns:1.15fr .85fr;gap:var(--gut);align-items:center}
+.goal-row{display:flex;gap:12px;flex-wrap:wrap}
+.canvas.tablet .g-3{grid-template-columns:1fr 1fr}
+.canvas.tablet .radar-grid{grid-template-columns:1fr}
+.canvas.mobile .g-3,.canvas.mobile .g-2{grid-template-columns:1fr}
+.canvas.mobile .bean-grid,.canvas.mobile .radar-grid{grid-template-columns:1fr}
+.canvas.mobile .rowflex{flex-direction:column}
+.canvas.mobile .recipes-scroll{display:flex;gap:14px;overflow-x:auto;padding-bottom:6px}
+.canvas.mobile .recipes-scroll > *{min-width:78%;flex:none}
+/* radar svg */
+.radarbox{border:1px solid var(--line);background:var(--card);border-radius:var(--radius);display:flex;align-items:center;justify-content:center;padding:10px}
+svg .ring{fill:none;stroke:var(--line);stroke-width:1}
+svg .spoke{stroke:var(--line);stroke-width:1}
+svg .data{fill:var(--fill3);fill-opacity:.5;stroke:var(--line3);stroke-width:1.5;stroke-dasharray:4 3}
+svg .node{fill:var(--card);stroke:var(--line3);stroke-width:1.5}
+svg .axislabel{fill:var(--mute);font-size:10px;font-family:ui-monospace,Menlo,monospace}
+svg .center{fill:var(--line3)}
+/* slider */
+.slider{margin:14px 0}
+.slider .cap{display:flex;justify-content:space-between;color:var(--mute);font-size:11px;margin-bottom:6px}
+.track{height:3px;background:var(--fill3);position:relative;border-radius:3px}
+.track .knob{position:absolute;top:50%;transform:translate(-50%,-50%);width:16px;height:16px;border:1.5px solid var(--line3);background:var(--card);border-radius:50%}
+/* step disclosure */
+.step{border:1px solid var(--line);background:var(--card);border-radius:var(--radius);padding:12px 14px;margin-top:10px}
+.step .sh{display:flex;align-items:center;gap:12px}
+.step .num{width:22px;height:22px;border:1px solid var(--line2);border-radius:50%;background:var(--fill);display:flex;align-items:center;justify-content:center;font-size:11px;color:var(--mute);flex:none}
+.step .why{margin-left:auto;font-size:11px;color:var(--faint);border:1px dotted var(--line);padding:2px 9px;cursor:pointer}
+.step .whybody{margin-top:10px;padding-top:10px;border-top:1px dashed var(--line);color:var(--faint);font-size:11px;display:none}
+.step.open .whybody{display:block}
+.step.open .why{background:var(--fill2)}
+/* disclosure panel (AI read) */
+.disc{margin-top:14px;border:1px dashed var(--line2);border-radius:var(--radius)}
+.disc .dh{display:flex;justify-content:space-between;align-items:center;padding:11px 14px;cursor:pointer;color:var(--mute);font-size:12px}
+.disc .db{display:none;padding:0 14px 16px}
+.disc.open .db{display:block}
+/* checklist */
+.check{display:flex;gap:10px;align-items:center;padding:9px 0;border-bottom:1px dashed var(--line)}
+.check:last-child{border-bottom:0}
+.check .bx{width:15px;height:15px;border:1.5px solid var(--line3);border-radius:2px;flex:none;position:relative}
+.check .bx:after{content:"✓";position:absolute;inset:-2px 0 0 2px;color:var(--line3);font-size:12px}
+.meter{height:6px;background:var(--fill3);border-radius:6px;position:relative;overflow:hidden}
+.meter i{position:absolute;left:0;top:0;bottom:0;background:var(--line2);display:block}
+.emptyhint{color:var(--ghost);font-size:11px;text-align:center;padding:6px}
+.reflow-note{max-width:940px;margin:0 auto 14px;color:var(--faint);font-size:11px;border-left:2px solid var(--line2);padding:4px 12px}
+</style>
+<body>
+<div class="rig">
+  <h1>BREW HELPER — LOW-FIDELITY WIREFRAME</h1>
+  <p class="note">Six sections, grayscale, box-only. A structured intake opens the flow; merged sections use state + disclosure, not extra scroll. Click <i>AI read</i>, any recipe <i>WHY</i>, or the diagnosis to see progressive disclosure. Shown at three breakpoints — the hierarchy never changes, only its arrangement.</p>
+  <div class="viewport-tabs">
+    <a href="#desktop">▭ Desktop 1280</a>
+    <a href="#tablet">▢ Tablet 768</a>
+    <a href="#mobile">▯ Mobile 390</a>
+  </div>
+
+  <div class="frame-label" id="desktop"><span class="big">1 · DESKTOP</span><span class="dim">1280px · 12-col · 24px gutters · primary reference</span></div>
+  <div class="canvas desktop"></div>
+
+  <div class="frame-label" id="tablet"><span class="big">2 · TABLET</span><span class="dim">768px · 3-up → 2-up · radar stacks</span></div>
+  <p class="reflow-note">3-column blocks → 2-up. Radar side-by-side → stacked. Bean card keeps 2-up. Gutters 20px.</p>
+  <div class="canvas tablet"></div>
+
+  <div class="frame-label" id="mobile"><span class="big">3 · MOBILE</span><span class="dim">390px · single column · recipes swipe</span></div>
+  <p class="reflow-note">Single column. Search → hamburger. The committed recipe plan fills the width. Sticky "next step" assumed at bottom.</p>
+  <div class="canvas mobile"></div>
+</div>
+
+<script>
+function radarSVG(){
+  return `<svg viewBox="0 0 300 300" width="240" height="240" role="img" aria-label="radar placeholder">
+    <polygon class="ring" points="150,40 245,95 245,205 150,260 55,205 55,95"/>
+    <polygon class="ring" points="150,77 213.3,113.5 213.3,186.5 150,223 86.7,186.5 86.7,113.5"/>
+    <polygon class="ring" points="150,113 182,131.5 182,168.5 150,187 118,168.5 118,131.5"/>
+    <line class="spoke" x1="150" y1="150" x2="150" y2="40"/><line class="spoke" x1="150" y1="150" x2="245" y2="95"/>
+    <line class="spoke" x1="150" y1="150" x2="245" y2="205"/><line class="spoke" x1="150" y1="150" x2="150" y2="260"/>
+    <line class="spoke" x1="150" y1="150" x2="55" y2="205"/><line class="spoke" x1="150" y1="150" x2="55" y2="95"/>
+    <polygon class="data" points="150,73 202,120 193,175 150,216 102,177 79,109"/>
+    <circle class="node" cx="150" cy="73" r="4"/><circle class="node" cx="202" cy="120" r="4"/><circle class="node" cx="193" cy="175" r="4"/>
+    <circle class="node" cx="150" cy="216" r="4"/><circle class="node" cx="102" cy="177" r="4"/><circle class="node" cx="79" cy="109" r="4"/>
+    <circle class="center" cx="150" cy="150" r="3"/>
+    <text class="axislabel" x="150" y="30" text-anchor="middle">Sweetness</text>
+    <text class="axislabel" x="252" y="92" text-anchor="start">Floral</text>
+    <text class="axislabel" x="252" y="214" text-anchor="start">Acidity</text>
+    <text class="axislabel" x="150" y="280" text-anchor="middle">Juiciness</text>
+    <text class="axislabel" x="48" y="214" text-anchor="end">Body</text>
+    <text class="axislabel" x="48" y="92" text-anchor="end">Clarity</text></svg>`;
+}
+function seclabel(idx,name,weight){
+  return `<div class="seclabel"><span class="idx">${idx}</span><span class="nm">${name}</span><span class="weight">${weight}</span></div>`;
+}
+const conn=`<div class="connector"></div>`;
+
+function spine(){
+  return `
+  <div class="appnav">
+    <span class="logo">BREW&nbsp;HELPER</span><div class="hamburger"></div><div class="navspace"></div>
+    <div class="searchbar"><span class="mag"></span><span>Search coffee, recipe, or origin…</span></div>
+    <div class="navspace"></div><div class="avatar"></div>
+  </div>
+  <div class="spine">
+
+    <!-- 01 NEW BREW (intake) -->
+    <div class="section">
+      ${seclabel('01','NEW BREW · intake','light')}
+      <div class="card">
+        <div class="hint" style="margin-bottom:10px">"What are you brewing today?" — describe the coffee in front of you</div>
+        <div class="blk" style="padding:16px;min-height:64px"><div class="stack"><div class="line l"></div><div class="line m"></div></div></div>
+        <div class="hint" style="margin-top:10px">reminder: tasting notes are yours to add</div>
+        <div class="g-3" style="margin-top:18px">
+          ${['Country of origin','Roast level','Grinder','Grind size','Roast age','Altitude','Process','Roaster'].map(function(f){return `<div><div class="hint" style="margin-bottom:6px">${f}</div><div class="blk" style="padding:9px 12px;display:flex;justify-content:space-between;color:var(--faint)"><span>Select…</span><span>▾</span></div></div>`}).join('')}
+        </div>
+        <div style="margin-top:20px"><span class="btn">Brew →</span></div>
+      </div>
+      <div class="hint" style="text-align:center;margin-top:8px">Brew → builds the Coffee card (02)</div>
+    </div>
+    ${conn}
+
+    <!-- 02 COFFEE (was Hero + Overview + Analysis) -->
+    <div class="section">
+      ${seclabel('02','COFFEE','ANCHOR')}
+      <div class="card focal">
+        <div class="searchbar" style="max-width:100%;margin-bottom:18px"><span class="mag"></span><span>What are we brewing today?  —  Colombia · Risaralda · Milan  ·  change ▸</span></div>
+        <div class="bean-grid">
+          <div class="thumb" style="aspect-ratio:1/1">bag / image</div>
+          <div class="stack">
+            <div class="title-lg">Colombia · Risaralda · Milan</div>
+            <div class="hint">Nitro Washed</div>
+            <div class="goal-row" style="margin-top:4px"><span class="pill">Melon</span><span class="pill">Kiwi</span><span class="pill">Watermelon</span></div>
+            <div class="rowflex" style="margin-top:12px;gap:32px">
+              <div><div class="hint">Roast age</div><div class="line xs" style="width:60px;margin-top:6px"></div></div>
+              <div><div class="hint">Process</div><div class="line xs" style="width:60px;margin-top:6px"></div></div>
+              <div><div class="hint">Roast level</div><div class="line xs" style="width:60px;margin-top:6px"></div></div>
+            </div>
+          </div>
+        </div>
+        <div class="disc" data-disc>
+          <div class="dh"><span>AI read — strengths · challenges · extraction advice</span><span>▾</span></div>
+          <div class="db">
+            <div class="g-3">
+              <div class="blk" style="padding:14px"><div class="hint">Strengths</div><div class="stack" style="margin-top:10px"><div class="line l"></div><div class="line m"></div></div></div>
+              <div class="blk" style="padding:14px"><div class="hint">Challenges</div><div class="stack" style="margin-top:10px"><div class="line l"></div><div class="line s"></div></div></div>
+              <div class="blk" style="padding:14px"><div class="hint">Advice</div><div class="stack" style="margin-top:10px"><div class="line l"></div><div class="line m"></div></div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="hint" style="text-align:center;margin-top:8px">search state → bean facts → AI read (collapsed)</div>
+    </div>
+    ${conn}
+
+    <!-- 03 EXTRACTION RADAR (was Goal + Radar) -->
+    <div class="section">
+      ${seclabel('03','EXTRACTION RADAR','★ PRIMARY ANCHOR')}
+      <div class="card pad-lg focal">
+        <div class="hint" style="margin-bottom:10px">Start from a goal — then fine-tune</div>
+        <div class="goal-row" style="margin-bottom:20px">
+          <span class="chip"><span class="o"></span>Sweetness</span><span class="chip sel"><span class="o"></span>Clarity</span>
+          <span class="chip"><span class="o"></span>Body</span><span class="chip"><span class="o"></span>Balanced</span>
+          <span class="chip sel"><span class="o"></span>Floral</span>
+        </div>
+        <div class="radar-grid">
+          <div class="radarbox">${radarSVG()}</div>
+          <div class="stack">
+            <div class="hint">Live readout — updates as you drag</div>
+            <div class="blk" style="padding:12px"><div class="between"><span class="hint">Priority A</span><div class="line xs" style="width:70px"></div></div></div>
+            <div class="blk" style="padding:12px"><div class="between"><span class="hint">Priority B</span><div class="line xs" style="width:70px"></div></div></div>
+            <div class="blk" style="padding:12px"><div class="between"><span class="hint">Priority C</span><div class="line xs" style="width:70px"></div></div></div>
+            <a class="btn block" style="margin-top:6px">Generate your plan ↓</a>
+          </div>
+        </div>
+      </div>
+      <div class="hint" style="text-align:center;margin-top:8px">the pivot — inputs above, outputs below</div>
+    </div>
+    ${conn}
+
+    <!-- 04 RECIPE (was Recommendations + Details) -->
+    <div class="section">
+      ${seclabel('04','RECIPE','ANCHOR')}
+      <div class="card focal">
+        <div class="between"><div class="title-lg" style="font-size:15px">Your committed plan</div><span class="pill">science-gated</span></div>
+        <div class="hint" style="margin:6px 0 10px">judgement + strategy context · assumes your stated setup</div>
+        <div class="rowflex" style="gap:16px">
+          <div><div class="hint">Ratio</div><div class="line xs" style="width:46px;margin-top:5px"></div></div>
+          <div><div class="hint">Grind</div><div class="line xs" style="width:46px;margin-top:5px"></div></div>
+          <div><div class="hint">Temp</div><div class="line xs" style="width:46px;margin-top:5px"></div></div>
+        </div>
+      </div>
+      <div class="divider">COMMITTED PLAN — STEPS EXPAND IN PLACE</div>
+      <div class="card">
+        <div class="between"><div class="line m"></div><span class="hint">expand any step for WHY</span></div>
+        <div class="step open"><div class="sh"><span class="num">1</span><div class="line m"></div><span class="why" data-why>WHY ▾</span></div><div class="whybody"><div class="stack"><div class="line l"></div><div class="line s"></div></div></div></div>
+        <div class="step"><div class="sh"><span class="num">2</span><div class="line l"></div><span class="why" data-why>WHY ▸</span></div><div class="whybody"><div class="line m"></div></div></div>
+        <div class="step"><div class="sh"><span class="num">3</span><div class="line s"></div><span class="why" data-why>WHY ▸</span></div><div class="whybody"><div class="line m"></div></div></div>
+        <div class="emptyhint">+ further steps collapse below</div>
+      </div>
+    </div>
+
+    <div class="section"><div class="hint" style="text-align:center;border-top:1px dashed var(--line2);border-bottom:1px dashed var(--line2);padding:8px;margin:20px auto 0;color:var(--ghost)">─ user leaves to brew (real-world break) ─</div></div>
+
+    <!-- 05 BREW REFLECTION (was Debrief + Diagnosis) -->
+    <div class="section">
+      ${seclabel('05','BREW REFLECTION','support')}
+      <div class="card">
+        <div class="title-lg" style="font-size:16px;margin-bottom:4px">How did it taste?</div>
+        <div class="hint" style="margin-bottom:14px">Structured observations — no stars, no scores.</div>
+        <div class="g-2">
+          <div>${['Sweetness','Body','Acidity'].map(function(s,i){return `<div class="slider"><div class="cap"><span>${s}</span><span>low — high</span></div><div class="track"><span class="knob" style="left:${[40,62,55][i]}%"></span></div></div>`}).join('')}</div>
+          <div class="blk" style="padding:14px"><div class="hint">Notes / observations</div><div class="stack" style="margin-top:10px"><div class="line l"></div><div class="line l"></div><div class="line m"></div></div></div>
+        </div>
+        <div class="divider">AI DIAGNOSIS — APPEARS ON SUBMIT</div>
+        <div class="disc open" data-disc>
+          <div class="dh"><span>Based on your feedback…</span><span>▾</span></div>
+          <div class="db">
+            <div class="stack" style="margin:6px 0 16px"><div class="line l"></div><div class="line m"></div></div>
+            <div class="between" style="margin-bottom:8px"><span class="hint">Next brew — adjustments</span><span class="pill">loops back to radar ↑</span></div>
+            <div class="blk" style="padding:6px 14px">
+              <div class="check"><span class="bx"></span><div class="line m"></div></div>
+              <div class="check"><span class="bx"></span><div class="line s"></div></div>
+              <div class="check"><span class="bx"></span><div class="line m"></div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    ${conn}
+
+    <!-- 06 COMMUNITY -->
+    <div class="section">
+      ${seclabel('06','COMMUNITY','light · reference')}
+      <div class="g-3">
+        ${[['Similar coffees'],['Most successful recipes'],['Your previous brews']].map(function(c){return `
+        <div class="card" style="padding:14px">
+          <div class="hint" style="margin-bottom:10px">${c[0]}</div>
+          <div class="stack">
+            <div class="blk" style="padding:10px"><div class="line m"></div></div>
+            <div class="blk" style="padding:10px"><div class="line s"></div></div>
+            <div class="blk" style="padding:10px"><div class="line m"></div></div>
+          </div>
+          <div class="emptyhint" style="margin-top:8px">view all →</div>
+        </div>`}).join('')}
+      </div>
+    </div>
+
+  </div>`;
+}
+
+document.querySelectorAll('.canvas').forEach(function(c){ c.innerHTML = spine(); });
+document.addEventListener('click', function(e){
+  var w=e.target.closest('[data-why]'); if(w){ w.closest('.step').classList.toggle('open'); return; }
+  var d=e.target.closest('[data-disc] .dh'); if(d){ d.closest('.disc').classList.toggle('open'); }
+});
+</script>
+</body>
+</html>

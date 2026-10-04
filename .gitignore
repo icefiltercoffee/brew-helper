@@ -1,0 +1,37 @@
+# Dependencies
+node_modules/
+.venv/
+__pycache__/
+*.pyc
+
+# Secrets and local environment (never commit)
+.env
+.env.*
+.dev.vars
+.dev.vars.*
+*.pem
+*.key
+*.p12
+secrets/
+
+# Cloudflare / build caches
+.wrangler/
+dist/
+.cache/
+
+# Local tooling and generated analysis
+.claude/
+graphify-out/
+
+# OS / editor junk
+.DS_Store
+._*
+Thumbs.db
+Desktop.ini
+*.log
+npm-debug.log*
+.vscode/
+.idea/
+
+# NOTE: brew-helper-site/assets/frames/*.jpg ARE intentionally committed;
+# they are the scroll-sequence frames Cloudflare Pages must serve.

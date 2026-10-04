@@ -1,0 +1,48 @@
+%% Brew Helper — Intelligence Platform system architecture (editable source)
+%% Render at mermaid.live or any Mermaid viewer. SVG hero: System-Architecture-Diagram.svg
+flowchart TB
+  User(("User"))
+  subgraph PRES["Presentation"]
+    Web["WEB APP — Dashboard<br/>New Brew · Coffee · Radar · Recipe · Reflection · Community"]
+    API["ENGINE API<br/>POST /recommend /diagnose /feedback · GET /evidence"]
+  end
+  User <--> Web --> API
+
+  subgraph LAYERS["Knowledge Layers"]
+    Mem["① MEMORY (durable)<br/>principles · history · user models"]
+    Res["② LIVE RESEARCH (ephemeral)<br/>trusted-source fetch → synthesise"]
+    Sci["③ COFFEE SCIENCE (first principles)<br/>validation gate — can veto"]
+    Ing["INGESTION PIPELINE (G0–G5)"]
+  end
+
+  subgraph ENGINE["Extraction Intelligence Engine — Orchestrator"]
+    direction TB
+    Loop["6-STAGE LOOP<br/>Observe → Interpret → Decide★ → Recommend → Explain → Learn"]
+    MM["Memory Manager"]
+    FR["Familiarity Router"]
+    RM["Research Manager"]
+    SV["Science Validation"]
+    ES["Evidence Synthesiser"]
+    SG["Strategy Generator ★"]
+    RG["Recipe Generator"]
+    DE["Diagnosis Engine"]
+    LE["Learning Engine"]
+  end
+
+  subgraph OUT["Outputs"]
+    Strat["EXTRACTION STRATEGY ★ (the product)"]
+    Rec["RECIPE RECOMMENDATION (science-gated)"]
+    Exp["EXPLANATION + EVIDENCE (evidence, not reasoning)"]
+    Learn["LEARNING (→ universal · user · equipment)"]
+  end
+
+  API -->|request| ENGINE
+  Mem -->|retrieve| ENGINE
+  Res -->|research| ENGINE
+  Sci -.->|validate| ENGINE
+  Mem -.->|if gaps| Res
+  Res -.->|durable findings| Ing -.->|promote| Mem
+
+  ENGINE --> Strat --> Rec --> Exp --> Learn
+  Exp -->|response, via API| Web
+  Learn -.->|Stage 6 · writes back| Mem

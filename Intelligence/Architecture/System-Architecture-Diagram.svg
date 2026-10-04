@@ -1,0 +1,255 @@
+<svg viewBox="0 0 1240 1230" xmlns="http://www.w3.org/2000/svg" font-family="ui-monospace, Menlo, Consolas, monospace">
+  <defs>
+    <marker id="arw" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#6A6055"/>
+    </marker>
+    <marker id="arwA" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#B65E36"/>
+    </marker>
+    <marker id="arwD" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#6E7A5A"/>
+    </marker>
+    <style>
+      .bg{fill:#F6F1E9}
+      .card{fill:#FDFBF7;stroke:#D9CDB8;stroke-width:1.5;rx:12}
+      .layer{fill:#FBF5EC;stroke:#C9A98A;stroke-width:1.5}
+      .engine{fill:#FCFAF6;stroke:#B65E36;stroke-width:2}
+      .out{fill:#FDFBF7;stroke:#D9CDB8;stroke-width:1.5}
+      .accent{fill:#F3E4D8;stroke:#B65E36;stroke-width:2}
+      .sci{fill:#EEF1EA;stroke:#6E7A5A;stroke-width:1.5}
+      .chip{fill:#F3ECE0;stroke:#CDBFA8;stroke-width:1}
+      .loop{fill:#FBF3EA;stroke:#C9A98A;stroke-width:1}
+      .t{fill:#2B2620;font-size:13px;font-weight:600}
+      .tl{fill:#2B2620;font-size:15px;font-weight:700;letter-spacing:.5px}
+      .s{fill:#6A6055;font-size:11px}
+      .xs{fill:#8A7E70;font-size:10px}
+      .kick{fill:#9B8F80;font-size:11px;font-weight:700;letter-spacing:1.5px}
+      .flow{stroke:#6A6055;stroke-width:1.6;fill:none}
+      .flowA{stroke:#B65E36;stroke-width:2;fill:none}
+      .flowD{stroke:#6E7A5A;stroke-width:1.6;fill:none;stroke-dasharray:5 4}
+      .lbl{fill:#6A6055;font-size:10px}
+      .lblA{fill:#9C4E2A;font-size:10px;font-weight:600}
+      .lblD{fill:#566149;font-size:10px;font-weight:600}
+    </style>
+  </defs>
+
+  <rect class="bg" x="0" y="0" width="1240" height="1230"/>
+  <text class="tl" x="40" y="44">Brew Helper — Intelligence Platform: System Architecture</text>
+  <text class="s" x="40" y="64">Reasoning is the product. Three knowledge layers feed one engine; every recommendation is constructed, validated, and evidence-backed.</text>
+
+  <!-- ============ PRESENTATION BAND ============ -->
+  <rect class="card" x="120" y="92" width="150" height="52" rx="26"/>
+  <text class="t" x="195" y="123" text-anchor="middle">User</text>
+
+  <rect class="card" x="330" y="88" width="600" height="60" rx="12"/>
+  <text class="t" x="352" y="114">WEB APP — Brew Helper Dashboard</text>
+  <text class="s" x="352" y="133">New Brew · Coffee · Radar · Recipe · Reflection · Community</text>
+
+  <!-- user <-> web -->
+  <line class="flow" x1="270" y1="118" x2="326" y2="118" marker-end="url(#arw)" marker-start="url(#arw)"/>
+
+  <!-- API -->
+  <rect class="card" x="330" y="170" width="600" height="46" rx="10"/>
+  <text class="t" x="352" y="192">ENGINE API</text>
+  <text class="s" x="352" y="207">POST /recommend · /diagnose · /feedback · GET /evidence  — thin transport, no reasoning</text>
+  <line class="flow" x1="630" y1="148" x2="630" y2="168" marker-end="url(#arw)"/>
+
+  <!-- ============ COLUMN HEADERS ============ -->
+  <text class="kick" x="40" y="258">KNOWLEDGE LAYERS</text>
+  <text class="kick" x="470" y="258">EXTRACTION INTELLIGENCE ENGINE</text>
+  <text class="kick" x="980" y="258">OUTPUTS</text>
+
+  <!-- ============ LEFT: KNOWLEDGE LAYERS ============ -->
+  <!-- Memory -->
+  <rect class="layer" x="40" y="272" width="330" height="104" rx="12"/>
+  <text class="t" x="58" y="296">① MEMORY <tspan class="xs">· durable</tspan></text>
+  <text class="s" x="58" y="316">Active principle library · brewing history</text>
+  <text class="s" x="58" y="333">user preference &amp; equipment models</text>
+  <text class="xs" x="58" y="352">changes slowly · permanent memory</text>
+  <text class="xs" x="58" y="368">store: Knowledge-Repository/</text>
+
+  <!-- Live Research -->
+  <rect class="layer" x="40" y="392" width="330" height="104" rx="12"/>
+  <text class="t" x="58" y="416">② LIVE RESEARCH <tspan class="xs">· ephemeral</tspan></text>
+  <text class="s" x="58" y="436">Trusted-source fetch → synthesise views</text>
+  <text class="s" x="58" y="453">weighs conflicts · never copies</text>
+  <text class="xs" x="58" y="472">gated by Familiarity Router (below)</text>
+  <text class="xs" x="58" y="488">allowlist registry (curated later)</text>
+
+  <!-- Coffee Science -->
+  <rect class="sci" x="40" y="512" width="330" height="96" rx="12"/>
+  <text class="t" x="58" y="536">③ COFFEE SCIENCE <tspan class="xs">· first principles</tspan></text>
+  <text class="s" x="58" y="556">Extraction physics/chemistry model</text>
+  <text class="s" x="58" y="573">acts as a validation GATE, not a reference</text>
+  <text class="xs" x="58" y="592">can veto/flag any unlawful strategy or recipe</text>
+
+  <!-- Ingestion bridge -->
+  <rect class="chip" x="40" y="624" width="330" height="58" rx="10"/>
+  <text class="t" x="58" y="647">INGESTION PIPELINE <tspan class="xs">G0–G5</tspan></text>
+  <text class="s" x="58" y="666">capture→screen→normalize→extract→distil→review</text>
+
+  <!-- research -> ingestion (durable) via right gutter -->
+  <path class="flowD" d="M370,472 L394,472 L394,652 L372,652" marker-end="url(#arwD)"/>
+  <text class="lblD" x="398" y="566" transform="rotate(90 398,566)">durable findings</text>
+  <!-- ingestion -> memory via far-left rail -->
+  <path class="flowD" d="M40,653 L18,653 L18,324 L38,324" marker-end="url(#arwD)"/>
+  <text class="lblD" x="12" y="510" transform="rotate(-90 12,510)">promote to Memory</text>
+
+  <!-- memory gates research -->
+  <path class="flowD" d="M205,376 L205,392" marker-end="url(#arwD)"/>
+  <text class="lblD" x="212" y="388">if gaps ↓</text>
+
+  <!-- ============ CENTER: ENGINE ============ -->
+  <rect class="engine" x="410" y="272" width="380" height="500" rx="14"/>
+  <text class="t" x="428" y="296">Orchestrator</text>
+  <text class="xs" x="428" y="313">runs the loop · resolves disagreement · one validated result</text>
+
+  <!-- 6-stage loop (2 x 3) -->
+  <text class="kick" x="428" y="338">6-STAGE LOOP</text>
+  <rect class="loop" x="428" y="348" width="165" height="40" rx="8"/><text class="t" x="510" y="373" text-anchor="middle">1 Observe</text>
+  <rect class="loop" x="607" y="348" width="165" height="40" rx="8"/><text class="t" x="689" y="373" text-anchor="middle">2 Interpret</text>
+  <rect class="accent" x="428" y="394" width="165" height="40" rx="8"/><text class="t" x="510" y="419" text-anchor="middle">3 Decide ★</text>
+  <rect class="loop" x="607" y="394" width="165" height="40" rx="8"/><text class="t" x="689" y="419" text-anchor="middle">4 Recommend</text>
+  <rect class="loop" x="428" y="440" width="165" height="40" rx="8"/><text class="t" x="510" y="465" text-anchor="middle">5 Explain</text>
+  <rect class="loop" x="607" y="440" width="165" height="40" rx="8"/><text class="t" x="689" y="465" text-anchor="middle">6 Learn</text>
+  <text class="xs" x="428" y="497">strategy first — never recipe-first · every number carries its reason</text>
+
+  <!-- modules -->
+  <text class="kick" x="428" y="524">MODULES (orchestrator calls)</text>
+  <rect class="chip" x="428" y="534" width="165" height="30" rx="7"/><text class="s" x="437" y="553">Memory Manager</text>
+  <rect class="chip" x="607" y="534" width="165" height="30" rx="7"/><text class="s" x="616" y="553">Familiarity Router</text>
+  <rect class="chip" x="428" y="570" width="165" height="30" rx="7"/><text class="s" x="437" y="589">Research Manager</text>
+  <rect class="sci" x="607" y="570" width="165" height="30" rx="7"/><text class="s" x="616" y="589">Science Validation</text>
+  <rect class="chip" x="428" y="606" width="165" height="30" rx="7"/><text class="s" x="437" y="625">Evidence Synthesiser</text>
+  <rect class="accent" x="607" y="606" width="165" height="30" rx="7"/><text class="s" x="616" y="625">Strategy Generator</text>
+  <rect class="chip" x="428" y="642" width="165" height="30" rx="7"/><text class="s" x="437" y="661">Recipe Generator</text>
+  <rect class="chip" x="607" y="642" width="165" height="30" rx="7"/><text class="s" x="616" y="661">Diagnosis Engine</text>
+  <rect class="chip" x="428" y="678" width="165" height="30" rx="7"/><text class="s" x="437" y="697">Learning Engine</text>
+  <rect class="chip" x="607" y="678" width="165" height="30" rx="7"/><text class="s" x="616" y="697">Cache · Guardrails</text>
+  <text class="xs" x="428" y="726">modules talk only through typed contracts → swappable (rules → ML)</text>
+  <text class="xs" x="428" y="744">new brew method = a plugin on this bus; core stays fixed</text>
+
+  <!-- API -> engine -->
+  <path class="flow" d="M630,216 L630,246 L760,246 L760,272" marker-end="url(#arw)"/>
+  <text class="lbl" x="690" y="240">request</text>
+
+  <!-- layers -> engine -->
+  <path class="flowA" d="M370,324 L410,324" marker-end="url(#arwA)"/><text class="lblA" x="374" y="317">retrieve</text>
+  <path class="flowA" d="M370,444 L410,410" marker-end="url(#arwA)"/><text class="lblA" x="374" y="437">research</text>
+  <path class="flowD" d="M370,560 L410,470" marker-end="url(#arwD)"/><text class="lblD" x="374" y="556">validate</text>
+
+  <!-- ============ RIGHT: OUTPUTS ============ -->
+  <rect class="accent" x="830" y="272" width="330" height="66" rx="12"/>
+  <text class="t" x="848" y="298">EXTRACTION STRATEGY <tspan class="xs">★ the product</tspan></text>
+  <text class="s" x="848" y="318">primary · secondary · trade-offs · target</text>
+  <text class="xs" x="848" y="333">recipes are downstream of this</text>
+
+  <rect class="out" x="830" y="352" width="330" height="60" rx="12"/>
+  <text class="t" x="848" y="376">RECIPE RECOMMENDATION</text>
+  <text class="s" x="848" y="396">params derived for the user's gear · science-gated</text>
+
+  <rect class="out" x="830" y="426" width="330" height="72" rx="12"/>
+  <text class="t" x="848" y="450">EXPLANATION + EVIDENCE</text>
+  <text class="s" x="848" y="470">judgement leads · evidence as context</text>
+  <text class="xs" x="848" y="487">exposes evidence, never the reasoning</text>
+
+  <rect class="out" x="830" y="512" width="330" height="66" rx="12"/>
+  <text class="t" x="848" y="536">LEARNING</text>
+  <text class="s" x="848" y="556">expected vs observed vs feedback → diagnosis</text>
+  <text class="xs" x="848" y="573">routes to: universal · user · equipment</text>
+
+  <!-- engine -> strategy -->
+  <path class="flowA" d="M790,305 L830,305" marker-end="url(#arwA)"/>
+  <!-- strategy -> recipe -> explanation -->
+  <path class="flow" d="M995,338 L995,352" marker-end="url(#arw)"/>
+  <path class="flow" d="M995,412 L995,426" marker-end="url(#arw)"/>
+  <!-- explanation -> learning -->
+  <path class="flow" d="M995,498 L995,512" marker-end="url(#arw)"/>
+
+  <!-- explanation -> web (response, via API) -->
+  <path class="flow" d="M1160,462 L1200,462 L1200,112 L932,112" marker-end="url(#arw)"/>
+  <text class="lbl" x="1066" y="106" text-anchor="middle">response → render (via API)</text>
+
+  <!-- learning -> memory (feedback loop) -->
+  <path class="flowD" d="M900,578 L900,860 L205,860 L205,682" marker-end="url(#arwD)"/>
+  <text class="lblD" x="470" y="853">Stage 6 · learning writes back to Memory — the platform compounds</text>
+
+  <!-- ============ LEGEND ============ -->
+  <text class="kick" x="40" y="912">LEGEND</text>
+  <line class="flowA" x1="40" y1="936" x2="80" y2="936" marker-end="url(#arwA)"/><text class="s" x="88" y="940">primary reasoning path</text>
+  <line class="flow" x1="250" y1="936" x2="290" y2="936" marker-end="url(#arw)"/><text class="s" x="298" y="940">data flow</text>
+  <line class="flowD" x1="430" y1="936" x2="470" y2="936" marker-end="url(#arwD)"/><text class="s" x="478" y="940">feedback / learning loop</text>
+  <rect class="accent" x="650" y="927" width="18" height="16" rx="4"/><text class="s" x="676" y="940">the product (strategy)</text>
+  <rect class="sci" x="840" y="927" width="18" height="16" rx="4"/><text class="s" x="866" y="940">science validation gate</text>
+
+  <text class="xs" x="40" y="982">Adaptive research: engine uses local Memory when familiarity is high; fetches only when knowledge is incomplete/stale — then promotes durable findings back into Memory.</text>
+
+  <!-- ============ IMPLEMENTATION ROADMAP BAND ============ -->
+  <line x1="40" y1="1012" x2="1200" y2="1012" stroke="#D9CDB8" stroke-width="1"/>
+  <text class="tl" x="40" y="1044" font-size="15">Implementation Roadmap — where the build is now</text>
+  <text class="s" x="40" y="1063">Foundation + M0–M5 complete. Engine: 8 principles · science-gated · scenario evidence · diagnosis+learning · governed live-research layer (registry allowlist, adaptive gate; awaits a real search backend). Next: M6.</text>
+
+  <!-- track -->
+  <line x1="110" y1="1108" x2="1127" y2="1108" stroke="#D9CDB8" stroke-width="2"/>
+
+  <!-- you are here marker (on M6) -->
+  <line x1="901" y1="1082" x2="901" y2="1128" stroke="#B65E36" stroke-width="1.5" stroke-dasharray="4 3"/>
+  <path d="M895,1078 L907,1078 L901,1086 z" fill="#B65E36"/>
+  <text x="901" y="1073" text-anchor="middle" fill="#9C4E2A" font-size="10" font-weight="700">you are here</text>
+
+  <!-- Base — DONE -->
+  <rect x="62" y="1088" width="96" height="40" rx="9" fill="#E7ECDD" stroke="#6E7A5A" stroke-width="1.5"/>
+  <text x="110" y="1113" text-anchor="middle" fill="#2B2620" font-size="13" font-weight="700">Base ✓</text>
+  <text x="110" y="1146" text-anchor="middle" fill="#566149" font-size="10" font-weight="600">Design + knowledge</text>
+
+  <!-- M0 — done -->
+  <rect x="175" y="1088" width="96" height="40" rx="9" fill="#E7ECDD" stroke="#6E7A5A" stroke-width="1.5"/>
+  <text x="223" y="1113" text-anchor="middle" fill="#2B2620" font-size="13" font-weight="700">M0 ✓</text>
+  <text x="223" y="1146" text-anchor="middle" fill="#566149" font-size="10" font-weight="600">Scaffold</text>
+
+  <!-- M1 — done -->
+  <rect x="288" y="1088" width="96" height="40" rx="9" fill="#E7ECDD" stroke="#6E7A5A" stroke-width="1.5"/>
+  <text x="336" y="1113" text-anchor="middle" fill="#2B2620" font-size="13" font-weight="700">M1 ✓</text>
+  <text x="336" y="1146" text-anchor="middle" fill="#566149" font-size="10" font-weight="600">Skeleton</text>
+
+  <!-- M2 — done -->
+  <rect x="401" y="1088" width="96" height="40" rx="9" fill="#E7ECDD" stroke="#6E7A5A" stroke-width="1.5"/>
+  <text x="449" y="1113" text-anchor="middle" fill="#2B2620" font-size="13" font-weight="700">M2 ✓</text>
+  <text x="449" y="1146" text-anchor="middle" fill="#566149" font-size="10" font-weight="600">Science gate</text>
+
+  <!-- M3 — done -->
+  <rect x="514" y="1088" width="96" height="40" rx="9" fill="#E7ECDD" stroke="#6E7A5A" stroke-width="1.5"/>
+  <text x="562" y="1113" text-anchor="middle" fill="#2B2620" font-size="13" font-weight="700">M3 ✓</text>
+  <text x="562" y="1146" text-anchor="middle" fill="#566149" font-size="10" font-weight="600">Evidence</text>
+
+  <!-- M4 — done -->
+  <rect x="627" y="1088" width="96" height="40" rx="9" fill="#E7ECDD" stroke="#6E7A5A" stroke-width="1.5"/>
+  <text x="675" y="1113" text-anchor="middle" fill="#2B2620" font-size="13" font-weight="700">M4 ✓</text>
+  <text x="675" y="1146" text-anchor="middle" fill="#566149" font-size="10" font-weight="600">Local learn</text>
+
+  <!-- M5 — done -->
+  <rect x="740" y="1088" width="96" height="40" rx="9" fill="#E7ECDD" stroke="#6E7A5A" stroke-width="1.5"/>
+  <text x="788" y="1113" text-anchor="middle" fill="#2B2620" font-size="13" font-weight="700">M5 ✓</text>
+  <text x="788" y="1146" text-anchor="middle" fill="#566149" font-size="10" font-weight="600">Live research</text>
+
+  <!-- M6 — next -->
+  <rect x="853" y="1086" width="96" height="44" rx="9" fill="#F3E4D8" stroke="#B65E36" stroke-width="2"/>
+  <text x="901" y="1112" text-anchor="middle" fill="#2B2620" font-size="13" font-weight="700">M6</text>
+  <text x="901" y="1147" text-anchor="middle" fill="#9C4E2A" font-size="10" font-weight="700">Compounding · next</text>
+
+  <!-- M7 -->
+  <rect x="966" y="1088" width="96" height="40" rx="9" fill="#F3ECE0" stroke="#CDBFA8" stroke-width="1" stroke-dasharray="4 3"/>
+  <text x="1014" y="1113" text-anchor="middle" fill="#8A7E70" font-size="13" font-weight="700">M7</text>
+  <text x="1014" y="1146" text-anchor="middle" fill="#8A7E70" font-size="10">Hardening</text>
+
+  <!-- M8 -->
+  <rect x="1079" y="1088" width="96" height="40" rx="9" fill="#F3ECE0" stroke="#CDBFA8" stroke-width="1" stroke-dasharray="4 3"/>
+  <text x="1127" y="1113" text-anchor="middle" fill="#8A7E70" font-size="13" font-weight="700">M8+</text>
+  <text x="1127" y="1146" text-anchor="middle" fill="#8A7E70" font-size="10">Scale · plugins</text>
+
+  <!-- roadmap legend -->
+  <rect x="40" y="1178" width="16" height="14" rx="4" fill="#E7ECDD" stroke="#6E7A5A" stroke-width="1.5"/><text class="s" x="64" y="1190">complete</text>
+  <rect x="180" y="1178" width="16" height="14" rx="4" fill="#F3E4D8" stroke="#B65E36" stroke-width="2"/><text class="s" x="204" y="1190">in progress</text>
+  <rect x="340" y="1178" width="16" height="14" rx="4" fill="#F3ECE0" stroke="#CDBFA8" stroke-width="1" stroke-dasharray="4 3"/><text class="s" x="364" y="1190">planned</text>
+  <text class="xs" x="470" y="1190">Foundation = design system · IA · dashboard prototype · intelligence design · knowledge repo seeded (2 sources, 1 active principle).</text>
+</svg>

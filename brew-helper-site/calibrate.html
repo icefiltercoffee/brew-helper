@@ -1,0 +1,554 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#F6F1E9">
+<title>Brew Helper — Calibration</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#F6F1E9; --bg-sunk:#EFE7DA; --surface:#FDFBF7; --surface-2:#F3ECE0;
+  --border:#E7DDCC; --border-strong:#D9CDB8;
+  --ink:#2B2620; --ink-2:#6A6055; --ink-3:#9B8F80; --ink-inv:#FBF7F0;
+  --accent:#B65E36; --accent-strong:#9C4E2A; --accent-soft:#F0DED0; --accent-tint:rgba(182,94,54,.10);
+  --sage:#6E7A5A; --sage-soft:#E5E8DB;
+  --success:#5F7A52; --success-soft:#E4EBDD;
+  --warning:#BE8A2E; --warning-soft:#F3E7C9;
+  --info:#4E6E7C; --info-soft:#DCE6EA;
+  --r-sm:10px; --r-md:16px; --r-lg:22px; --r-pill:999px;
+  --sh-sm:0 1px 2px rgba(43,38,32,.05);
+  --sh-md:0 6px 24px -10px rgba(43,38,32,.14);
+  --sh-lg:0 26px 60px -28px rgba(43,38,32,.26);
+  --ring:0 0 0 3px rgba(182,94,54,.28);
+  --ease:cubic-bezier(.32,.72,0,1); --fast:130ms; --dur:240ms;
+  --s1:4px; --s2:8px; --s3:12px; --s4:16px; --s5:24px; --s6:32px; --s7:48px;
+}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html,body{margin:0;padding:0}
+body{background:var(--bg);color:var(--ink);font-family:'Inter',system-ui,sans-serif;font-size:15px;line-height:1.55;
+  padding-bottom:env(safe-area-inset-bottom)}
+h1,h2,h3{font-family:'Fraunces',Georgia,serif;font-weight:600;margin:0;letter-spacing:-.01em}
+h1{font-size:26px} h2{font-size:20px} h3{font-size:17px}
+.wrap{max-width:560px;margin:0 auto;padding:var(--s5) var(--s4) var(--s7)}
+.label{font-size:11.5px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-3)}
+.micro{font-size:12.5px;color:var(--ink-3);line-height:1.5}
+.card{background:var(--surface);border:1px solid var(--border);border-radius:var(--r-md);
+  padding:var(--s5);box-shadow:var(--sh-sm);margin-bottom:var(--s4)}
+.card.inset{background:var(--surface-2);box-shadow:none}
+hr.div{border:none;border-top:1px solid var(--border);margin:var(--s5) 0}
+
+/* header */
+.top{display:flex;align-items:center;gap:10px;margin-bottom:var(--s2)}
+.top .dot{width:9px;height:9px;border-radius:50%;background:var(--accent);flex:none}
+.top a{margin-left:auto;font-size:13px;color:var(--ink-3);text-decoration:none;font-weight:500}
+.top a:hover{color:var(--accent)}
+.lede{color:var(--ink-2);font-size:14px;margin:0 0 var(--s5)}
+
+/* blind banner */
+.blind{display:flex;gap:11px;align-items:flex-start;background:var(--warning-soft);
+  border:1px solid #E3CE96;border-radius:var(--r-sm);padding:12px 14px;margin-bottom:var(--s5)}
+.blind svg{flex:none;margin-top:2px}
+.blind p{margin:0;font-size:13px;line-height:1.5;color:#6B5316}
+.blind strong{color:#4E3B0C}
+
+/* fields */
+.field{display:flex;flex-direction:column;gap:6px;margin-bottom:var(--s4)}
+.row2{display:grid;grid-template-columns:1fr 1fr;gap:var(--s4)}
+input[type=text],input[type=date],select,textarea{
+  width:100%;font:inherit;font-size:15px;color:var(--ink);background:var(--surface);
+  border:1px solid var(--border-strong);border-radius:var(--r-sm);padding:11px 13px;appearance:none}
+select{background-image:url("data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath fill='%239B8F80' d='M1 1l5 5 5-5'/%3E%3C/svg%3E");
+  background-repeat:no-repeat;background-position:right 14px center;padding-right:36px}
+input:focus,select:focus,textarea:focus{outline:none;border-color:var(--accent);box-shadow:var(--ring)}
+textarea{min-height:76px;resize:vertical;line-height:1.5}
+
+/* buttons */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;font:inherit;font-weight:600;
+  font-size:14.5px;border-radius:var(--r-sm);padding:12px 18px;border:1px solid transparent;cursor:pointer;
+  transition:background var(--fast) var(--ease),transform var(--fast) var(--ease)}
+.btn:active{transform:translateY(1px)}
+.btn-primary{background:var(--accent);color:var(--ink-inv)}
+.btn-primary:hover{background:var(--accent-strong)}
+.btn-ghost{background:var(--surface);color:var(--ink);border-color:var(--border-strong)}
+.btn-ghost:hover{border-color:var(--accent);color:var(--accent)}
+.btn-block{width:100%}
+.btn:disabled{opacity:.45;cursor:not-allowed;transform:none}
+.btn-lg{padding:15px 22px;font-size:15.5px}
+
+/* taster roster */
+.roster{display:flex;flex-direction:column;gap:9px}
+.tcard{display:flex;align-items:center;gap:12px;padding:13px 14px;border:1px solid var(--border-strong);
+  border-radius:var(--r-sm);background:var(--surface);cursor:pointer;transition:all var(--fast) var(--ease);text-align:left;width:100%;font:inherit}
+.tcard:hover{border-color:var(--accent)}
+.tcard .av{width:36px;height:36px;border-radius:50%;flex:none;display:grid;place-items:center;
+  font-weight:700;font-size:13.5px;background:var(--accent-soft);color:var(--accent-strong)}
+.tcard.owner .av{background:var(--surface-2);color:var(--ink-2)}
+.tcard .nm{font-weight:600;font-size:14.5px}
+.tcard .rl{font-size:12px;color:var(--ink-3)}
+.tcard .st{margin-left:auto;font-size:11.5px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;
+  padding:4px 10px;border-radius:var(--r-pill);border:1px solid var(--border-strong);color:var(--ink-3)}
+.tcard.done{background:var(--success-soft);border-color:#A9C098;cursor:default}
+.tcard.done .st{background:var(--success);color:#fff;border-color:var(--success)}
+.tcard.done .av{background:var(--success);color:#fff}
+.tcard.absent{opacity:.5}
+
+/* sliders */
+.sl{margin-bottom:var(--s5)}
+.sl .cap{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:9px}
+.sl .nm{font-weight:600;font-size:15px}
+.sl .num{font-size:12.5px;color:var(--accent);font-weight:600}
+.sl input[type=range]{width:100%;-webkit-appearance:none;appearance:none;background:transparent;height:30px;margin:0}
+.sl input[type=range]::-webkit-slider-runnable-track{height:6px;border-radius:3px;background:var(--surface-2);border:1px solid var(--border)}
+.sl input[type=range]::-moz-range-track{height:6px;border-radius:3px;background:var(--surface-2);border:1px solid var(--border)}
+.sl input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:26px;height:26px;border-radius:50%;
+  background:var(--surface);border:2.5px solid var(--accent);margin-top:-11px;box-shadow:0 2px 5px rgba(43,38,32,.2);cursor:grab}
+.sl input[type=range]::-moz-range-thumb{width:22px;height:22px;border-radius:50%;background:var(--surface);
+  border:2.5px solid var(--accent);box-shadow:0 2px 5px rgba(43,38,32,.2);cursor:grab}
+.sl .hint{font-size:11.5px;color:var(--ink-3);display:flex;justify-content:space-between;margin-top:-2px}
+
+/* descriptor chips */
+.chips{display:flex;flex-wrap:wrap;gap:7px;margin-top:10px}
+.chip{font:inherit;font-size:13px;padding:7px 12px;border-radius:var(--r-pill);border:1px solid var(--border-strong);
+  background:var(--surface);color:var(--ink-2);cursor:pointer}
+.chip:hover{border-color:var(--accent);color:var(--accent)}
+.chip.on{background:var(--accent);border-color:var(--accent);color:var(--ink-inv)}
+.picked{display:flex;flex-wrap:wrap;gap:7px;margin-top:11px;min-height:30px}
+.ptag{display:inline-flex;align-items:center;gap:6px;font-size:13px;padding:6px 11px;border-radius:var(--r-pill);
+  background:var(--accent-soft);color:var(--accent-strong);font-weight:500}
+.ptag b{cursor:pointer;font-weight:700;opacity:.6}
+.ptag b:hover{opacity:1}
+
+/* progress */
+.prog{display:flex;align-items:center;gap:10px;margin-bottom:var(--s4)}
+.bar{flex:1;height:6px;border-radius:3px;background:var(--surface-2);overflow:hidden;border:1px solid var(--border)}
+.bar i{display:block;height:100%;background:var(--accent);transition:width var(--dur) var(--ease)}
+.prog .n{font-size:12.5px;color:var(--ink-3);font-weight:600;white-space:nowrap}
+
+/* results */
+.rtable{width:100%;border-collapse:collapse;font-size:13.5px;margin-top:var(--s3)}
+.rtable th,.rtable td{padding:9px 8px;text-align:left;border-bottom:1px solid var(--border)}
+.rtable th{font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-3);font-weight:700}
+.rtable td.num{font-variant-numeric:tabular-nums;text-align:right}
+.rtable tr.flag td{background:var(--warning-soft)}
+.pill{display:inline-block;font-size:10.5px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;
+  padding:3px 8px;border-radius:var(--r-pill)}
+.pill.ok{background:var(--success-soft);color:#3E5836}
+.pill.warn{background:var(--warning-soft);color:#6B5316}
+.pill.sub{background:var(--info-soft);color:#33525E}
+
+.note{background:var(--accent-tint);border-left:3px solid var(--accent);border-radius:0 var(--r-sm) var(--r-sm) 0;
+  padding:12px 14px;font-size:13.5px;line-height:1.55;color:var(--ink-2);margin-top:var(--s4)}
+.note strong{color:var(--ink)}
+code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:12.5px;background:var(--surface-2);
+  padding:2px 6px;border-radius:5px;border:1px solid var(--border)}
+pre{background:var(--ink);color:#E8E0D4;border-radius:var(--r-sm);padding:14px;overflow:auto;font-size:11.5px;
+  line-height:1.5;max-height:260px;font-family:ui-monospace,SFMono-Regular,Menlo,monospace}
+.hide{display:none!important}
+
+/* toast */
+.toast{position:fixed;left:50%;bottom:24px;transform:translate(-50%,80px);background:var(--ink);color:var(--ink-inv);
+  padding:12px 20px;border-radius:var(--r-pill);font-size:13.5px;font-weight:500;box-shadow:var(--sh-lg);
+  opacity:0;transition:all var(--dur) var(--ease);z-index:99;max-width:90vw;text-align:center}
+.toast.show{transform:translate(-50%,0);opacity:1}
+@media (max-width:420px){.row2{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="top">
+    <span class="dot"></span>
+    <span class="label" style="color:var(--ink-2)">Brew Helper · System 6</span>
+    <a href="index.html">← Dashboard</a>
+  </div>
+  <h1>Calibration session</h1>
+  <p class="lede">Blind triangulation. One brew, everyone scores it independently, nobody sees anyone else's numbers until all of you have submitted.</p>
+
+  <!-- ═══════════ STEP 1 · SESSION SETUP ═══════════ -->
+  <section id="stepSetup">
+    <div class="blind">
+      <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#8A6D1F" stroke-width="2" stroke-linecap="round"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7-10-7-10-7z"/><circle cx="12" cy="12" r="3"/><path d="M3 3l18 18"/></svg>
+      <p><strong>Why blind matters.</strong> If you see a champion's score before logging yours, this measures anchoring, not perception — and the reliability figure it produces is worthless. Submit first, discuss after.</p>
+    </div>
+
+    <div class="card">
+      <h2 style="margin-bottom:var(--s4)">The brew</h2>
+      <div class="field">
+        <span class="label">Coffee</span>
+        <select id="coffee">
+          <option value="" disabled selected hidden>Select a bean…</option>
+          <optgroup label="Lume">
+            <option>Panama Franceschi · Geisha · Washed</option>
+            <option>Panama Corpachi · Geisha · Red Honey</option>
+            <option>Ethiopia Urabeast Guji G1 · Black Honey</option>
+            <option>Ethiopia Huro · Heirloom · Anaerobic Natural</option>
+            <option>Kenya Handege · SL28/SL34 · Washed</option>
+            <option>La Papaya Ecuador · Sidra · Washed</option>
+            <option>La Papaya Ecuador · Typica Mejorado · Washed</option>
+          </optgroup>
+          <option value="__other">Other / not listed…</option>
+        </select>
+      </div>
+      <div class="field hide" id="otherWrap">
+        <span class="label">Coffee name</span>
+        <input type="text" id="coffeeOther" placeholder="Origin · varietal · process">
+      </div>
+      <div class="row2">
+        <div class="field"><span class="label">Recipe / brew ref</span><input type="text" id="brewRef" placeholder="e.g. RCP-0001"></div>
+        <div class="field"><span class="label">Date</span><input type="date" id="date"></div>
+      </div>
+      <p class="micro">One batch, identical cups, same temperature. Vary the coffee style across sessions — calibrating only on light washed teaches the system exactly one thing.</p>
+    </div>
+
+    <div class="card">
+      <h2 style="margin-bottom:var(--s2)">Who's tasting today?</h2>
+      <p class="micro" style="margin-bottom:var(--s4)">Tap to toggle. You need at least <strong>two champions</strong> present — with one, there's no measurable spread and every disagreement gets charged to Joseph.</p>
+      <div class="roster" id="rosterSetup"></div>
+      <p class="note" id="rosterWarn" style="display:none"></p>
+    </div>
+
+    <button class="btn btn-primary btn-block btn-lg" id="startBtn">Start blind session</button>
+  </section>
+
+  <!-- ═══════════ STEP 2 · ROSTER / HAND-OFF ═══════════ -->
+  <section id="stepRoster" class="hide">
+    <div class="card">
+      <div class="prog">
+        <div class="bar"><i id="progBar" style="width:0%"></i></div>
+        <span class="n" id="progN">0 of 0 submitted</span>
+      </div>
+      <h2 style="margin-bottom:var(--s2)">Pass the phone</h2>
+      <p class="micro" style="margin-bottom:var(--s4)" id="sessionMeta"></p>
+      <div class="roster" id="rosterLive"></div>
+      <hr class="div">
+      <button class="btn btn-primary btn-block" id="revealBtn" disabled>Reveal &amp; compare</button>
+      <p class="micro" style="text-align:center;margin:10px 0 0" id="revealHint">Everyone submits before anything is revealed.</p>
+    </div>
+    <button class="btn btn-ghost btn-block" id="abandonBtn">Discard session</button>
+  </section>
+
+  <!-- ═══════════ STEP 3 · SCORING (one taster) ═══════════ -->
+  <section id="stepScore" class="hide">
+    <div class="card">
+      <div style="display:flex;align-items:center;gap:12px;margin-bottom:var(--s2)">
+        <span class="av" id="scAv" style="width:38px;height:38px;border-radius:50%;display:grid;place-items:center;font-weight:700;font-size:14px;background:var(--accent-soft);color:var(--accent-strong)"></span>
+        <div>
+          <h2 id="scName">—</h2>
+          <div class="micro" id="scRole">—</div>
+        </div>
+      </div>
+      <p class="micro" style="margin-bottom:var(--s5)">Score what's <strong>in the cup</strong>, not what you want from it. Move every slider even if you're unsure — a blank biases the agreement rate more than a rough guess does.</p>
+      <div id="sliders"></div>
+    </div>
+
+    <div class="card">
+      <h3 style="margin-bottom:var(--s2)">What do you taste?</h3>
+      <p class="micro" style="margin-bottom:var(--s3)">Your own words, verbatim. If you taste chamomile, write chamomile — don't translate it into what you think the "right" answer is. The mismatch is the data.</p>
+      <input type="text" id="descIn" placeholder="Type a note, press Enter…" autocomplete="off">
+      <div class="chips" id="descChips"></div>
+      <div class="picked" id="descPicked"></div>
+    </div>
+
+    <button class="btn btn-primary btn-block btn-lg" id="submitBtn">Submit &amp; lock</button>
+    <p class="micro" style="text-align:center;margin-top:10px">Locked entries can't be edited — that's what keeps the session blind.</p>
+    <button class="btn btn-ghost btn-block" id="backBtn" style="margin-top:var(--s4)">← Back (discard this entry)</button>
+  </section>
+
+  <!-- ═══════════ STEP 4 · REVEAL ═══════════ -->
+  <section id="stepReveal" class="hide">
+    <div class="card">
+      <h2 style="margin-bottom:var(--s2)">Session results</h2>
+      <p class="micro" id="revealMeta" style="margin-bottom:var(--s4)"></p>
+      <div style="overflow-x:auto">
+        <table class="rtable" id="axisTable"></table>
+      </div>
+      <p class="note" id="revealNote"></p>
+    </div>
+
+    <div class="card">
+      <h3 style="margin-bottom:var(--s3)">Descriptors</h3>
+      <div id="descCompare"></div>
+    </div>
+
+    <div class="card">
+      <h3 style="margin-bottom:var(--s2)">Save this session</h3>
+      <p class="micro" style="margin-bottom:var(--s4)">Append this object to the <code>sessions</code> array in <code>Platform/data/palate-calibration.json</code>. The store is append-only — corrections are new sessions, never edits.</p>
+      <pre id="jsonOut"></pre>
+      <div class="row2" style="margin-top:var(--s4)">
+        <button class="btn btn-ghost" id="copyBtn">Copy JSON</button>
+        <button class="btn btn-ghost" id="dlBtn">Download</button>
+      </div>
+      <button class="btn btn-primary btn-block" id="newBtn" style="margin-top:var(--s4)">New session</button>
+    </div>
+  </section>
+
+</div>
+<div class="toast" id="toast"></div>
+
+<script>
+/* ═══════════════════════════════════════════════════════════════════════
+   Brew Helper — Calibration Capture (System 6)
+   Mirrors Platform/packages/palate/palate-engine.ts. The maths shown on the
+   reveal screen is the SAME maths the engine runs; this screen exists so the
+   panel can log blind at the café instead of hand-editing JSON.
+   Blind integrity is enforced structurally: a submitted record is written to
+   store and never rendered again until every taster has submitted.
+   ═══════════════════════════════════════════════════════════════════════ */
+const $=s=>document.querySelector(s), $$=s=>[...document.querySelectorAll(s)];
+
+const AXES=['sweetness','clarity','body','acidity','floral','juiciness'];
+const AXIS_HINT={
+  sweetness:['thin / savoury','syrupy'], clarity:['muddy, blurred','crystalline'],
+  body:['watery','heavy, coating'],      acidity:['flat','sharp, vivid'],
+  floral:['none','perfumed'],            juiciness:['dry finish','mouthwatering']
+};
+const TASTERS=[
+  {id:'joseph',        name:'Joseph',    role:'owner',      slot:'You'},
+  {id:'champ-darren',  name:'Darren',    role:'calibrator', slot:'Champion 1'},
+  {id:'champ-sweefong',name:'Swee Fong', role:'calibrator', slot:'Champion 2'},
+  {id:'champ-xiaoqian',name:'Xiao Qian', role:'calibrator', slot:'Champion 3'}
+];
+const COMMON=['jasmine','chamomile','peach','apricot','mandarin','blackcurrant','lemon','bergamot',
+  'honey','cane sugar','berry','stone fruit','black tea','earl grey','floral','citrus','cocoa','herbal'];
+
+const KEY='bh_calibration_session_v1';
+let S=null;                 // active session
+let draft={radar:{},desc:[]};
+let activeTaster=null;
+
+const initials=n=>n.split(' ').map(w=>w[0]).join('').slice(0,2).toUpperCase();
+const cap=s=>s[0].toUpperCase()+s.slice(1);
+function toast(m){const t=$('#toast');t.textContent=m;t.classList.add('show');clearTimeout(t._t);t._t=setTimeout(()=>t.classList.remove('show'),2400);}
+function save(){try{localStorage.setItem(KEY,JSON.stringify(S));}catch(e){}}
+function load(){try{return JSON.parse(localStorage.getItem(KEY)||'null');}catch(e){return null;}}
+function show(id){['stepSetup','stepRoster','stepScore','stepReveal'].forEach(x=>$('#'+x).classList.toggle('hide',x!==id));window.scrollTo({top:0,behavior:'smooth'});}
+
+/* ─────────── STEP 1 · setup ─────────── */
+$('#date').valueAsDate=new Date();
+$('#coffee').addEventListener('change',e=>$('#otherWrap').classList.toggle('hide',e.target.value!=='__other'));
+
+let present=new Set(TASTERS.map(t=>t.id));   // everyone in by default
+function renderSetupRoster(){
+  $('#rosterSetup').innerHTML=TASTERS.map(t=>{
+    const on=present.has(t.id);
+    return `<button type="button" class="tcard ${t.role==='owner'?'owner':''} ${on?'':'absent'}" data-id="${t.id}">
+      <span class="av">${initials(t.name)}</span>
+      <span><span class="nm">${t.name}</span><br><span class="rl">${t.slot} · ${t.role==='owner'?'owner palate':'calibrator'}</span></span>
+      <span class="st">${on?'present':'away'}</span></button>`;}).join('');
+  const champs=[...present].filter(id=>TASTERS.find(t=>t.id===id).role==='calibrator').length;
+  const w=$('#rosterWarn');
+  if(!present.has('joseph')){
+    w.style.display='';w.innerHTML='<strong>Joseph isn\'t present.</strong> The session still records panel reference data, but it can\'t produce a bias or reliability figure — those are measured against your reading specifically.';
+  } else if(champs<2){
+    w.style.display='';w.innerHTML='<strong>Only '+champs+' champion present.</strong> This session will yield vocabulary translation data but no reliability: with a single calibrator there is no measurable panel spread, so every disagreement is charged to you.';
+  } else { w.style.display='none'; }
+}
+$('#rosterSetup').addEventListener('click',e=>{
+  const b=e.target.closest('.tcard'); if(!b) return;
+  const id=b.dataset.id;
+  present.has(id)?present.delete(id):present.add(id);
+  renderSetupRoster();
+});
+renderSetupRoster();
+
+$('#startBtn').addEventListener('click',()=>{
+  const sel=$('#coffee').value;
+  const coffee = sel==='__other' ? $('#coffeeOther').value.trim() : sel;
+  if(!coffee){toast('Pick the coffee first');return;}
+  if(present.size<2){toast('Need at least two tasters');return;}
+  const d=$('#date').value||new Date().toISOString().slice(0,10);
+  S={ id:'CAL-'+d.replace(/-/g,'')+'-'+Math.random().toString(36).slice(2,5).toUpperCase(),
+      date:d, coffee, brewRef:$('#brewRef').value.trim()||'unspecified',
+      coffeeFingerprint:coffee.toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,''),
+      blind:true, roster:[...present], records:[] };
+  save(); renderLiveRoster(); show('stepRoster');
+});
+
+/* ─────────── STEP 2 · roster / hand-off ─────────── */
+function renderLiveRoster(){
+  const done=new Set(S.records.map(r=>r.taster));
+  $('#sessionMeta').innerHTML=`<strong>${S.coffee}</strong> · ${S.date} · ${S.id}`;
+  $('#rosterLive').innerHTML=S.roster.map(id=>{
+    const t=TASTERS.find(x=>x.id===id), isDone=done.has(id);
+    return `<button type="button" class="tcard ${t.role==='owner'?'owner':''} ${isDone?'done':''}" data-id="${id}" ${isDone?'disabled':''}>
+      <span class="av">${isDone?'✓':initials(t.name)}</span>
+      <span><span class="nm">${t.name}</span><br><span class="rl">${t.slot}</span></span>
+      <span class="st">${isDone?'locked':'tap to score'}</span></button>`;}).join('');
+  const n=S.records.length, tot=S.roster.length;
+  $('#progBar').style.width=(n/tot*100)+'%';
+  $('#progN').textContent=`${n} of ${tot} submitted`;
+  const all=n===tot;
+  $('#revealBtn').disabled=!all;
+  $('#revealHint').textContent=all?'All in — nothing is hidden any more.':`Waiting on ${tot-n} more. No scores are visible until then.`;
+}
+$('#rosterLive').addEventListener('click',e=>{
+  const b=e.target.closest('.tcard'); if(!b||b.disabled) return;
+  openScoring(b.dataset.id);
+});
+$('#abandonBtn').addEventListener('click',()=>{
+  if(!confirm('Discard this session and everything logged in it?'))return;
+  localStorage.removeItem(KEY); S=null; show('stepSetup'); toast('Session discarded');
+});
+
+/* ─────────── STEP 3 · scoring ─────────── */
+function openScoring(id){
+  activeTaster=TASTERS.find(t=>t.id===id);
+  draft={radar:{},desc:[]};
+  AXES.forEach(a=>draft.radar[a]=0.5);
+  $('#scAv').textContent=initials(activeTaster.name);
+  $('#scName').textContent=activeTaster.name;
+  $('#scRole').textContent=activeTaster.slot+' · '+(activeTaster.role==='owner'
+    ? 'owner palate — bias-corrected downstream'
+    : 'calibrator — this is reference data');
+  $('#sliders').innerHTML=AXES.map(a=>`
+    <div class="sl" data-axis="${a}">
+      <div class="cap"><span class="nm">${cap(a)}</span><span class="num" id="v-${a}">0.50</span></div>
+      <input type="range" min="0" max="100" value="50" aria-label="${cap(a)}">
+      <div class="hint"><span>${AXIS_HINT[a][0]}</span><span>${AXIS_HINT[a][1]}</span></div>
+    </div>`).join('');
+  $$('#sliders input').forEach(inp=>{
+    inp.addEventListener('input',e=>{
+      const ax=e.target.closest('.sl').dataset.axis, v=e.target.value/100;
+      draft.radar[ax]=v; $('#v-'+ax).textContent=v.toFixed(2);
+    });
+  });
+  $('#descChips').innerHTML=COMMON.map(c=>`<button type="button" class="chip" data-t="${c}">${c}</button>`).join('');
+  renderPicked();
+  show('stepScore');
+}
+function renderPicked(){
+  const p=$('#descPicked');
+  p.innerHTML=draft.desc.length
+    ? draft.desc.map(d=>`<span class="ptag">${d}<b data-rm="${d}">×</b></span>`).join('')
+    : '<span class="micro">Nothing yet — tap a chip or type your own.</span>';
+  $$('#descChips .chip').forEach(c=>c.classList.toggle('on',draft.desc.includes(c.dataset.t)));
+}
+function addDesc(t){
+  t=t.toLowerCase().trim(); if(!t||draft.desc.includes(t))return;
+  draft.desc.push(t); renderPicked();
+}
+$('#descChips').addEventListener('click',e=>{
+  const c=e.target.closest('.chip'); if(!c)return;
+  const t=c.dataset.t;
+  draft.desc.includes(t)?draft.desc=draft.desc.filter(x=>x!==t):draft.desc.push(t);
+  renderPicked();
+});
+$('#descPicked').addEventListener('click',e=>{
+  const b=e.target.closest('[data-rm]'); if(!b)return;
+  draft.desc=draft.desc.filter(x=>x!==b.dataset.rm); renderPicked();
+});
+$('#descIn').addEventListener('keydown',e=>{
+  if(e.key!=='Enter')return; e.preventDefault();
+  addDesc(e.target.value); e.target.value='';
+});
+$('#backBtn').addEventListener('click',()=>{activeTaster=null;renderLiveRoster();show('stepRoster');});
+$('#submitBtn').addEventListener('click',()=>{
+  if(!draft.desc.length && !confirm('No descriptors logged. Submit anyway?'))return;
+  S.records.push({taster:activeTaster.id,radar:{...draft.radar},descriptors:[...draft.desc]});
+  save(); activeTaster=null; renderLiveRoster(); show('stepRoster');
+  toast('Locked. Hand the phone over.');
+});
+
+/* ─────────── STEP 4 · reveal + the same maths as the engine ─────────── */
+const mean=xs=>xs.length?xs.reduce((a,b)=>a+b,0)/xs.length:0;
+const levelOf=r=>r>=.8?'High':r>=.65?'Moderate':r>0?'Limited':'None';
+
+$('#revealBtn').addEventListener('click',()=>{
+  const champs=S.records.filter(r=>TASTERS.find(t=>t.id===r.taster).role==='calibrator');
+  const own=S.records.find(r=>r.taster==='joseph');
+  const rows=AXES.map(a=>{
+    const vals=champs.map(r=>r.radar[a]);
+    const ref=mean(vals);
+    const spread=vals.length<2?0:Math.max(...vals)-Math.min(...vals);
+    const raw=own?own.radar[a]-ref:null;
+    const adj=raw===null?null:Math.max(0,Math.abs(raw)-spread/2);
+    const rel=adj===null?null:Math.max(0,Math.min(1,1-adj));
+    return {a,ref,spread,raw,adj,rel};
+  });
+
+  $('#revealMeta').innerHTML=`<strong>${S.coffee}</strong> · ${S.date} · ${S.records.length} tasters · ${S.id}`;
+
+  const head=`<tr><th>Axis</th>${own?'<th class="num">You</th>':''}<th class="num">Panel</th><th class="num">Spread</th>${own?'<th class="num">Bias</th><th>Read</th>':''}</tr>`;
+  const body=rows.map(r=>{
+    const subj=r.spread>=.2;
+    const flag=r.rel!==null&&r.rel<.65;
+    const badge=r.rel===null?'<span class="pill sub">no owner</span>'
+      : subj?'<span class="pill sub">subjective</span>'
+      : `<span class="pill ${flag?'warn':'ok'}">${levelOf(r.rel)}</span>`;
+    return `<tr class="${flag&&!subj?'flag':''}">
+      <td>${cap(r.a)}</td>
+      ${own?`<td class="num">${own.radar[r.a].toFixed(2)}</td>`:''}
+      <td class="num">${r.ref.toFixed(2)}</td>
+      <td class="num">${r.spread.toFixed(2)}</td>
+      ${own?`<td class="num">${r.raw>0?'+':''}${r.raw.toFixed(2)}</td><td>${badge}</td>`:''}
+    </tr>`;}).join('');
+  $('#axisTable').innerHTML=head+body;
+
+  // narrative
+  const n=[];
+  if(own){
+    const hot=rows.filter(r=>r.raw>=.08).map(r=>r.a), cold=rows.filter(r=>r.raw<=-.08).map(r=>r.a);
+    if(hot.length)  n.push(`You read <strong>${hot.join(', ')}</strong> higher than the panel.`);
+    if(cold.length) n.push(`You read <strong>${cold.join(', ')}</strong> lower than the panel.`);
+    if(!hot.length&&!cold.length) n.push('No systematic offset on any axis — your intensities track the panel closely.');
+    const subj=rows.filter(r=>r.spread>=.2).map(r=>r.a);
+    if(subj.length) n.push(`The champions themselves disagreed by 0.2+ on <strong>${subj.join(', ')}</strong>, so half that spread is forgiven before any error is charged to you — those axes are genuinely subjective, not something you got wrong.`);
+  } else {
+    n.push('Joseph did not taste this session, so it contributes panel reference data and vocabulary only — no bias or reliability can be computed.');
+  }
+  if(champs.length<2) n.push('<strong>Only one calibrator</strong> — no measurable spread, so this session contributes translation data but no reliability.');
+  n.push('Reliability firms up over sessions: <strong>3</strong> before any figure is quoted, <strong>8</strong> for full weight.');
+  $('#revealNote').innerHTML=n.join(' ');
+
+  // descriptor comparison — candidate translations
+  const ownD=own?own.descriptors:[];
+  const panelD=[...new Set(champs.flatMap(r=>r.descriptors))];
+  const shared=ownD.filter(d=>panelD.includes(d));
+  const onlyYou=ownD.filter(d=>!panelD.includes(d));
+  const onlyPanel=panelD.filter(d=>!ownD.includes(d));
+  $('#descCompare').innerHTML=`
+    <div style="margin-bottom:12px"><span class="label">Agreed</span><div class="picked">${
+      shared.length?shared.map(d=>`<span class="ptag">${d}</span>`).join(''):'<span class="micro">Nothing in common this round.</span>'}</div></div>
+    <div style="margin-bottom:12px"><span class="label">Only you</span><div class="picked">${
+      onlyYou.length?onlyYou.map(d=>`<span class="ptag">${d}</span>`).join(''):'<span class="micro">—</span>'}</div></div>
+    <div><span class="label">Only the panel</span><div class="picked">${
+      onlyPanel.length?onlyPanel.map(d=>`<span class="ptag">${d}</span>`).join(''):'<span class="micro">—</span>'}</div></div>
+    <p class="micro" style="margin-top:14px">Candidate translations form where a term of yours repeatedly co-occurs with a panel term. A mapping is only admitted after <strong>2+ repeats</strong> and when it accounts for <strong>60%+</strong> of your uses of that word — one co-occurrence is coincidence, not a translation.</p>`;
+
+  const out={id:S.id,date:S.date,brewRef:S.brewRef,coffee:S.coffee,
+    coffeeFingerprint:S.coffeeFingerprint,blind:true,records:S.records};
+  $('#jsonOut').textContent=JSON.stringify(out,null,2);
+  show('stepReveal');
+});
+
+$('#copyBtn').addEventListener('click',async()=>{
+  try{await navigator.clipboard.writeText($('#jsonOut').textContent);toast('JSON copied');}
+  catch(e){toast('Copy failed — select the text manually');}
+});
+$('#dlBtn').addEventListener('click',()=>{
+  const b=new Blob([$('#jsonOut').textContent],{type:'application/json'});
+  const a=document.createElement('a');
+  a.href=URL.createObjectURL(b); a.download=S.id+'.json'; a.click();
+  URL.revokeObjectURL(a.href); toast('Downloaded');
+});
+$('#newBtn').addEventListener('click',()=>{
+  localStorage.removeItem(KEY); S=null;
+  present=new Set(TASTERS.map(t=>t.id)); renderSetupRoster();
+  $('#coffee').value=''; $('#brewRef').value=''; $('#otherWrap').classList.add('hide');
+  show('stepSetup');
+});
+
+/* ─────────── resume an interrupted session ─────────── */
+(function(){
+  const saved=load();
+  if(saved&&saved.records&&saved.records.length<saved.roster.length){
+    S=saved; renderLiveRoster(); show('stepRoster');
+    toast('Resumed session in progress');
+  }
+})();
+</script>
+</body>
+</html>

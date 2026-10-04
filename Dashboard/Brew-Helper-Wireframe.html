@@ -1,0 +1,194 @@
+<!doctype html>
+<meta charset="utf-8">
+<title>Brew Helper — Low-Fidelity Wireframe (6 sections)</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+  /* ---- WIREFRAME ONLY: grayscale, box-only, no colour/type/brand ---- */
+  :root{
+    --ink:#333; --mute:#777; --faint:#999; --line:#bbb; --line2:#999;
+    --fill:#eee; --fill2:#e3e3e3; --page:#f4f4f4; --white:#fafafa; --lock:#efefef;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--page);color:var(--ink);
+    font-family:ui-monospace,"SF Mono",Menlo,Consolas,monospace;font-size:13px;line-height:1.45}
+  .placeholder{color:var(--faint)}
+  header.nav{position:sticky;top:0;z-index:5;background:var(--white);
+    border-bottom:1px solid var(--line2);padding:10px 18px;display:flex;align-items:center;gap:18px}
+  .logo{border:1px solid var(--line2);padding:5px 10px;letter-spacing:1px;background:var(--fill)}
+  nav.primary{display:flex;gap:6px;margin-left:8px}
+  nav.primary span{border:1px dashed var(--line2);padding:5px 12px;color:var(--mute);background:var(--white)}
+  nav.primary span.active{border-style:solid;background:var(--fill2);color:var(--ink)}
+  .navnote{margin-left:auto;color:var(--faint);font-size:11px}
+  .shell{display:grid;grid-template-columns:210px 1fr;gap:0;max-width:1160px;margin:0 auto}
+  aside.rail{position:sticky;top:52px;align-self:start;padding:22px 14px;height:calc(100vh - 52px);
+    border-right:1px solid var(--line);overflow:auto}
+  .rail h4{margin:0 0 4px;font-size:10px;letter-spacing:1.5px;color:var(--faint);font-weight:600}
+  .rail .sub{color:var(--faint);font-size:10px;margin:0 0 14px}
+  .step{display:flex;gap:8px;align-items:center;padding:6px 6px;border:1px solid transparent;margin-bottom:2px}
+  .step .dot{width:14px;height:14px;border:1px solid var(--line2);border-radius:50%;flex:none;
+    display:flex;align-items:center;justify-content:center;font-size:9px;color:var(--mute)}
+  .step.done .dot{background:var(--fill2)}
+  .step.active{border:1px solid var(--line2);background:var(--white)}
+  .step.locked{color:var(--faint)}
+  .step.locked .dot{border-style:dashed}
+  .step small{font-size:11px}
+  .phase{font-size:9px;letter-spacing:1px;color:var(--faint);margin:12px 0 4px;text-transform:uppercase}
+  main{padding:22px 26px 80px}
+  .flowhint{color:var(--faint);text-align:center;font-size:11px;margin:2px 0 16px}
+  .block{border:1px solid var(--line2);background:var(--white);margin:0 auto 14px;max-width:760px;position:relative}
+  .block .head{display:flex;align-items:flex-start;gap:10px;padding:12px 14px;border-bottom:1px solid var(--line)}
+  .tag{border:1px solid var(--line2);background:var(--fill);padding:2px 7px;font-size:10px;flex:none}
+  .htext{flex:1}
+  .htext .title{font-weight:600;letter-spacing:.3px}
+  .htext .why{color:var(--mute);font-size:11px;margin-top:2px}
+  .state{border:1px dashed var(--line2);color:var(--mute);font-size:10px;padding:2px 7px;flex:none}
+  .body{padding:16px 14px}
+  .focal{border:1px dashed var(--line2);background:var(--fill);min-height:64px;display:flex;
+    align-items:center;justify-content:center;color:var(--faint);text-align:center;padding:18px}
+  .focal.tall{min-height:120px}
+  .subrow{display:flex;gap:10px;margin-top:12px;flex-wrap:wrap}
+  .subrow > div{flex:1;min-width:110px;border:1px dotted var(--line);color:var(--faint);font-size:10px;padding:8px;text-align:center}
+  .disclose{margin-top:10px;border:1px dotted var(--line);color:var(--faint);padding:8px 10px;font-size:11px}
+  .foot{display:flex;justify-content:space-between;align-items:center;padding:10px 14px;border-top:1px solid var(--line)}
+  .foot .rel{color:var(--faint);font-size:10px}
+  .btn{border:1px solid var(--line2);background:var(--fill2);padding:6px 12px;font-size:11px;color:var(--ink)}
+  .block.locked{background:var(--lock);border-style:dashed}
+  .block.locked .body{color:var(--faint);text-align:center;font-size:11px}
+  .block.central{border-width:2px}
+  .central-flag{position:absolute;top:-9px;left:14px;background:var(--fill2);border:1px solid var(--line2);
+    font-size:9px;letter-spacing:1px;padding:1px 8px}
+  .gap{max-width:760px;margin:2px auto 16px;text-align:center;color:var(--faint);font-size:11px;
+    border-top:1px dashed var(--line2);border-bottom:1px dashed var(--line2);padding:8px}
+  .phasebar{max-width:760px;margin:22px auto 12px;border-bottom:1px solid var(--line);
+    color:var(--faint);font-size:10px;letter-spacing:1.5px;padding-bottom:4px}
+  .legend{max-width:760px;margin:26px auto 0;border:1px dotted var(--line);padding:12px 14px;color:var(--mute);font-size:11px}
+  .legend b{color:var(--ink)}
+  .legend span{display:inline-block;margin-right:16px}
+</style>
+
+<header class="nav">
+  <span class="logo">BREW HELPER</span>
+  <nav class="primary">
+    <span>Dashboard</span><span class="active">Brew</span><span>Library</span><span>Community</span><span>Settings</span>
+  </nav>
+  <span class="navnote">primary nav = destinations only · workflow steps live in the rail →</span>
+</header>
+
+<div class="shell">
+  <aside class="rail">
+    <h4>YOU ARE HERE</h4>
+    <p class="sub">progress within this brew<br>(6 sections, not global nav)</p>
+
+    <div class="phase">Plan</div>
+    <div class="step done"><span class="dot">✓</span><small>01 New Brew</small></div>
+    <div class="step done"><span class="dot">✓</span><small>02 Coffee</small></div>
+    <div class="step active"><span class="dot">★</span><small>03 Radar</small></div>
+    <div class="step locked"><span class="dot"></span><small>04 Recipe</small></div>
+
+    <div class="phase">Brew</div>
+    <div class="step locked"><span class="dot"></span><small>— off-app —</small></div>
+
+    <div class="phase">Reflect &amp; Improve</div>
+    <div class="step locked"><span class="dot"></span><small>05 Reflection</small></div>
+    <div class="step locked"><span class="dot"></span><small>06 Community</small></div>
+  </aside>
+
+  <main>
+    <div class="flowhint">▼ one vertical spine · 6 sections · read top-to-bottom = one brewing session ▼</div>
+
+    <div class="phasebar">PLAN — sections 01–04</div>
+
+    <!-- 01 NEW BREW (intake) collapsed -->
+    <div class="block">
+      <div class="head">
+        <span class="tag">01</span>
+        <div class="htext"><div class="title">NEW BREW · intake</div>
+        <div class="why">"What are you brewing today?" — describe + attributes → Brew · absorbs Hero</div></div>
+        <span class="state">DONE · collapsed</span>
+      </div>
+      <div class="body">
+        <div class="focal" style="min-height:44px">[ large description text box — placeholder ]</div>
+        <div class="subrow">
+          <div>origin</div><div>roast level</div><div>grinder</div><div>grind size</div>
+          <div>roast age</div><div>altitude</div><div>process</div><div>roaster</div>
+        </div>
+        <div class="disclose">reminder: tasting notes are the user's own to add</div>
+      </div>
+      <div class="foot"><span class="rel">→ Brew builds the Coffee card (02)</span><span class="btn">Brew →</span></div>
+    </div>
+
+    <!-- 02 COFFEE collapsed -->
+    <div class="block collapsed">
+      <div class="head">
+        <span class="tag">02</span>
+        <div class="htext"><div class="title">COFFEE</div>
+        <div class="why">completed card built from intake → bean facts → AI read · merges Overview + Analysis</div></div>
+        <span class="state">DONE · collapsed</span>
+      </div>
+      <div class="body" style="color:var(--mute);font-size:12px">Assembled: [coffee placeholder] · flavour tags · roast age · <i>AI read available on expand</i></div>
+    </div>
+
+    <!-- 03 RADAR active / central -->
+    <div class="block central">
+      <span class="central-flag">★ CENTRAL INTERACTION · IA PIVOT</span>
+      <div class="head">
+        <span class="tag">03</span>
+        <div class="htext"><div class="title">EXTRACTION RADAR</div>
+        <div class="why">why: goal presets → tune priorities · merges Goal + Radar</div></div>
+        <span class="state">ACTIVE · focal</span>
+      </div>
+      <div class="body">
+        <div class="subrow"><div>goal preset chips</div></div>
+        <div class="focal tall" style="margin-top:10px">[ interactive radar control surface — placeholder ]<br><span class="placeholder">(radar visual designed later; this only fixes its position)</span></div>
+        <div class="disclose">progressive disclosure: adjusting priorities re-computes recipes below in real time</div>
+      </div>
+      <div class="foot"><span class="rel">← seeded by goal presets&nbsp;&nbsp;|&nbsp;&nbsp;→ drives Recipe (04)</span><span class="btn">Generate your plan →</span></div>
+    </div>
+
+    <!-- 04 RECIPE locked -->
+    <div class="block locked">
+      <div class="head">
+        <span class="tag">04</span>
+        <div class="htext"><div class="title">RECIPE</div>
+        <div class="why">why: one equipment-compatible, science-gated plan expands to steps (WHY on demand)</div></div>
+        <span class="state">LOCKED</span>
+      </div>
+      <div class="body">tune the radar above to generate one committed plan → review the strategy → steps expand in place</div>
+    </div>
+
+    <div class="gap">─ ─ ─&nbsp;&nbsp;user leaves the app to brew (real-world break)&nbsp;&nbsp;─ ─ ─</div>
+
+    <div class="phasebar">REFLECT &amp; IMPROVE — sections 05–06</div>
+
+    <!-- 05 REFLECTION locked -->
+    <div class="block locked">
+      <div class="head">
+        <span class="tag">05</span>
+        <div class="htext"><div class="title">BREW REFLECTION</div>
+        <div class="why">why: structured tasting (no stars) → AI diagnosis appears below · merges Debrief + Diagnosis · loops to radar ↑</div></div>
+        <span class="state">LOCKED</span>
+      </div>
+      <div class="body">available after you brew — log what you tasted, get diagnosis + next-brew adjustments</div>
+    </div>
+
+    <!-- 06 COMMUNITY locked -->
+    <div class="block locked">
+      <div class="head">
+        <span class="tag">06</span>
+        <div class="htext"><div class="title">COMMUNITY <span class="placeholder">(light · reference)</span></div>
+        <div class="why">why: similar coffees · successful recipes · your previous brews (absorbs Learning)</div></div>
+        <span class="state">LOCKED</span>
+      </div>
+      <div class="body">complements the AI · loops back to the top → a borrowed idea becomes the next brew's start</div>
+    </div>
+
+    <div class="legend">
+      <b>Wireframe legend</b> — structure only, no visual design.<br>
+      <span>▧ <b>solid box</b> = active / focal</span>
+      <span>▤ <b>filled + summary</b> = completed, collapsed</span>
+      <span>▚ <b>dashed box</b> = locked (progressive disclosure)</span>
+      <span>★ = single central interaction</span><br>
+      <span>Six sections: New Brew (intake) · Coffee · Radar · Recipe · Reflection · Community. One focal point at a time; the focal box travels down the spine.</span>
+    </div>
+  </main>
+</div>

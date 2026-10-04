@@ -1,0 +1,31 @@
+{
+  "name": "brew-helper-platform",
+  "private": true,
+  "version": "0.0.0",
+  "description": "Brew Helper extraction-intelligence platform. M0 scaffold.",
+  "type": "module",
+  "workspaces": [
+    "packages/*",
+    "services/*"
+  ],
+  "scripts": {
+    "typecheck": "tsc --noEmit",
+    "recommend": "tsx services/cli/recommend.ts",
+    "serve": "tsx services/api/server.ts",
+    "build:principles": "node scripts/build-principles.mjs",
+    "build:engine": "esbuild services/web/entry.ts --bundle --format=iife --platform=browser --outfile=dist/brew-engine.js",
+    "build:public-engine": "npm run build:engine && node scripts/inline-public-engine.mjs",
+    "test": "for f in tests/*.test.mjs; do tsx \"$f\" || exit 1; done",
+    "eval": "tsx tests/golden-evals.test.mjs",
+    "release:check": "npm run typecheck && npm test && npm run eval"
+  },
+  "dependencies": {
+    "esbuild": "^0.28.1",
+    "yaml": "^2.9.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20.11.0",
+    "tsx": "^4.7.0",
+    "typescript": "^5.4.0"
+  }
+}

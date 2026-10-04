@@ -1,0 +1,91 @@
+{
+  "_note": "Coffee flavour lexicon — the controlled vocabulary of tasting notes, adapted from the SCA Coffee Taster's Flavor Wheel and the World Coffee Research Sensory Lexicon. The dashboard accepts a token as a flavour note ONLY if it matches an entry here (canonical term or alias). Anything else — regions, mills, roasters, or non-descriptors like 'pillow' — is rejected. Each family maps to how the note should steer the AI read (Interpretation-Heuristics §2, 'Stated tasting notes'). Add descriptors as the coverage grows; keep aliases lowercase.",
+  "families": {
+    "Floral": {
+      "read": { "s": ["Delicate aromatics"], "c": ["Aromatics are fragile"], "a": ["Cooler water", "Gentle pours to protect the florals"] },
+      "notes": {
+        "jasmine": [], "rose": ["rosewater"], "hibiscus": [], "chamomile": [], "lavender": [],
+        "elderflower": [], "honeysuckle": [], "osmanthus": [], "orange blossom": [], "floral": [], "perfume": [],
+        "black tea": ["tea-like", "tea like", "tea"], "bergamot": ["earl grey"], "jasmine tea": []
+      }
+    },
+    "Berry": {
+      "read": { "s": ["Vivid fruit", "Acidity structure present"], "c": [], "a": ["Preserve the brightness — don't over-buffer"] },
+      "notes": {
+        "blackberry": [], "raspberry": [], "blueberry": [], "strawberry": [], "blackcurrant": ["black currant", "cassis"],
+        "redcurrant": ["red currant"], "cranberry": [], "boysenberry": [], "mulberry": [], "berry": ["berries"]
+      }
+    },
+    "Citrus": {
+      "read": { "s": ["Bright, juicy acidity"], "c": ["Reads sour if under-developed"], "a": ["Preserve acids — cooler, brighter, low-buffer water"] },
+      "notes": {
+        "lemon": [], "lime": [], "orange": ["blood orange"], "grapefruit": [], "mandarin": ["tangerine", "clementine"],
+        "yuzu": [], "citrus": ["citric", "citrusy"], "pomelo": []
+      }
+    },
+    "Stone Fruit": {
+      "read": { "s": ["Sweet, ripe fruit"], "c": [], "a": ["Reach the mid-curve sweetness without over-extracting"] },
+      "notes": {
+        "peach": [], "apricot": [], "nectarine": [], "plum": [], "cherry": ["black cherry"], "prune": [], "dates": ["date"]
+      }
+    },
+    "Tropical": {
+      "read": { "s": ["Ripe, juicy tropical fruit"], "c": ["Can turn boozy if over-fermented"], "a": ["Even bed for that syrupy juiciness"] },
+      "notes": {
+        "mango": [], "pineapple": [], "papaya": [], "passion fruit": ["passionfruit", "maracuya"], "lychee": ["litchi"],
+        "guava": [], "banana": [], "melon": ["cantaloupe", "honeydew"], "watermelon": [], "kiwi": ["kiwifruit"], "coconut": []
+      }
+    },
+    "Other Fruit": {
+      "read": { "s": ["Sweet orchard fruit"], "c": [], "a": ["Balanced pour to keep the fruit clean"] },
+      "notes": {
+        "apple": ["green apple", "red apple"], "pear": [], "grape": ["red grape", "white grape", "concord"],
+        "pomegranate": [], "fig": [], "raisin": [], "tomato": ["tomato leaf"]
+      }
+    },
+    "Sweet": {
+      "read": { "s": ["Rounded sweetness", "Forgiving"], "c": [], "a": ["Reach mid-curve — a touch more contact time"] },
+      "notes": {
+        "caramel": [], "honey": [], "maple syrup": ["maple"], "molasses": [], "brown sugar": [], "sugarcane": ["cane sugar"],
+        "toffee": [], "butterscotch": [], "vanilla": [], "marshmallow": [], "nougat": [], "sweet": ["sweetness"], "syrupy": ["syrup"]
+      }
+    },
+    "Cocoa": {
+      "read": { "s": ["Comforting depth, body"], "c": ["Bitterness if over-extracted"], "a": ["Slightly coarser / cooler to keep it smooth"] },
+      "notes": {
+        "chocolate": ["dark chocolate", "milk chocolate", "chocolatey"], "cocoa": [], "cacao": ["cacao nib"], "brownie": [], "fudge": []
+      }
+    },
+    "Nutty": {
+      "read": { "s": ["Round, comforting body"], "c": ["Can read flat if under-developed"], "a": ["Mid-curve extraction for sweetness"] },
+      "notes": {
+        "almond": [], "hazelnut": [], "peanut": ["peanut butter"], "walnut": [], "pecan": [], "nutty": ["nut"]
+      }
+    },
+    "Spice": {
+      "read": { "s": ["Warm complexity"], "c": [], "a": ["Even extraction so the spice reads clean"] },
+      "notes": {
+        "cinnamon": [], "clove": [], "nutmeg": [], "anise": ["star anise"], "cardamom": [], "black pepper": ["pepper"], "ginger": []
+      }
+    },
+    "Winey / Fermented": {
+      "read": { "s": ["Intense, complex aromatics"], "c": ["Fragile — can turn boozy"], "a": ["Cooler water, gentle handling to keep it clean"] },
+      "notes": {
+        "winey": ["wine", "red wine"], "boozy": [], "fermented": ["ferment", "funky", "funk"], "rum": [], "whiskey": ["whisky"], "brandy": [], "sake": []
+      }
+    },
+    "Body / Texture": {
+      "read": { "s": ["Pleasing texture"], "c": [], "a": ["Manage evenness for a clean mouthfeel"] },
+      "notes": {
+        "juicy": ["juiciness"], "creamy": ["cream"], "silky": ["silk"], "velvety": ["velvet"], "buttery": ["butter"], "tea-like body": []
+      }
+    },
+    "Roasted / Savory": {
+      "read": { "s": ["Depth"], "c": ["Bitterness / ash if pushed"], "a": ["Coarser, cooler, gentle"] },
+      "notes": {
+        "roasted": ["roasty", "toast", "toasted"], "malt": ["malty"], "grain": ["grainy", "cereal"], "tobacco": [],
+        "smoky": ["smoke"], "ash": ["ashy"], "herbal": ["herb", "herbaceous"], "grassy": ["grass", "green", "vegetal"], "hay": []
+      }
+    }
+  }
+}

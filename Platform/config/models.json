@@ -1,0 +1,11 @@
+{
+  "$comment": "Model pins per stage. Small/cheap for extraction & scoring; larger for synthesis & judgement. Pinned per-response for reproducibility.",
+  "stages": {
+    "extractClaims": { "model": "small", "temperature": 0.0 },
+    "interpret":     { "model": "small", "temperature": 0.2 },
+    "decide":        { "model": "large", "temperature": 0.3 },
+    "recommend":     { "model": "large", "temperature": 0.2 },
+    "explain":       { "model": "large", "temperature": 0.4 },
+    "diagnose":      { "model": "large", "temperature": 0.2 }
+  }
+}

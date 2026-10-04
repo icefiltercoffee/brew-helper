@@ -1,0 +1,20 @@
+{
+  "name": "brew-helper-api",
+  "main": "src/index.ts",
+  "compatibility_date": "2026-07-31",
+  "workers_dev": true,
+  "observability": {
+    "logs": {
+      "enabled": true,
+      "invocation_logs": true
+    }
+  },
+  "d1_databases": [
+    {
+      "binding": "DB",
+      "database_name": "brew-helper",
+      "database_id": "0e3539a0-e9f2-482e-9179-038751d4d2e9",
+      "migrations_dir": "migrations"
+    }
+  ]
+}

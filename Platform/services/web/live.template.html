@@ -1,0 +1,214 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Brew Helper — Live Engine (M1)</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#F6F1E9;--surface:#FDFBF7;--surface-2:#F3ECE0;--border:#E7DDCC;--border-strong:#D9CDB8;
+  --ink:#2B2620;--ink-2:#6A6055;--ink-3:#9B8F80;--accent:#B65E36;--accent-strong:#9C4E2A;--accent-soft:#F0DED0;--accent-tint:rgba(182,94,54,.10);
+  --sage:#6E7A5A;--success:#5F7A52;--warning:#BE8A2E;--info:#4E6E7C;
+  --r:16px;--r-lg:22px;--sh:0 1px 2px rgba(43,38,32,.05);--sh-md:0 6px 24px -10px rgba(43,38,32,.14);
+}
+*{box-sizing:border-box}
+body{margin:0;background:radial-gradient(1000px 500px at 80% -10%,#FCF7EE,rgba(252,247,238,0) 60%),var(--bg);
+  color:var(--ink);font-family:'Inter',system-ui,sans-serif;font-size:15px;line-height:1.55;padding:0 0 80px}
+.serif{font-family:'Fraunces',Georgia,serif}
+.wrap{max-width:1080px;margin:0 auto;padding:30px 26px}
+header .k{font-size:11.5px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-3)}
+header h1{font-family:'Fraunces',serif;font-weight:500;font-size:30px;margin:4px 0 2px;letter-spacing:-.02em}
+header p{color:var(--ink-2);margin:0 0 22px}
+.badge{display:inline-block;background:var(--accent-tint);color:var(--accent-strong);border-radius:999px;padding:3px 11px;font-size:12px;font-weight:600}
+.grid{display:grid;grid-template-columns:340px 1fr;gap:24px;align-items:start}
+@media(max-width:820px){.grid{grid-template-columns:1fr}}
+.card{background:var(--surface);border:1px solid var(--border);border-radius:var(--r-lg);padding:22px;box-shadow:var(--sh)}
+.card.focal{box-shadow:var(--sh-md)}
+.label{font-size:11.5px;font-weight:600;letter-spacing:.11em;text-transform:uppercase;color:var(--ink-3);display:block;margin-bottom:7px}
+.field{margin-bottom:16px}
+input[type=text],select{width:100%;font:inherit;font-size:14px;color:var(--ink);background:var(--surface-2);
+  border:1px solid var(--border);border-radius:10px;padding:10px 12px;appearance:none}
+input[type=text]:focus,select:focus{outline:none;border-color:var(--accent);box-shadow:0 0 0 3px var(--accent-tint)}
+.slider{margin:12px 0}
+.slider .cap{display:flex;justify-content:space-between;font-size:13px;margin-bottom:4px}
+.slider .cap b{font-weight:600}.slider .cap .v{color:var(--ink-3);font-variant-numeric:tabular-nums}
+input[type=range]{width:100%;accent-color:var(--accent)}
+.btn{appearance:none;font:inherit;font-weight:600;font-size:15px;border:0;border-radius:999px;background:var(--accent);color:#fff;
+  padding:12px 22px;cursor:pointer;box-shadow:var(--sh);transition:background .15s,transform .1s}
+.btn:hover{background:var(--accent-strong)}.btn:active{transform:translateY(1px)}
+.judgement{font-family:'Fraunces',serif;font-size:20px;line-height:1.4;color:var(--ink);border-left:3px solid var(--accent);
+  background:var(--surface-2);padding:16px 18px;border-radius:12px;margin-bottom:18px}
+.judgement .pre{font-family:'Inter';font-size:11px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--accent-strong);display:block;margin-bottom:6px}
+h3{font-size:15px;margin:0 0 10px}
+.kv{display:flex;gap:10px;margin:5px 0;font-size:14px}
+.kv .k{color:var(--ink-3);width:96px;flex:none}
+.kv .val{color:var(--ink)}
+.tag{display:inline-block;background:var(--accent-tint);color:var(--accent-strong);border-radius:999px;padding:2px 10px;font-size:12px;font-weight:600}
+.param{display:grid;grid-template-columns:96px 150px 1fr;gap:10px;padding:9px 0;border-bottom:1px solid var(--border);font-size:13.5px}
+.param:last-child{border-bottom:0}
+.param .n{color:var(--ink-3)}.param .v{font-weight:600}.param .b{color:var(--ink-2)}
+.flag{padding:8px 12px;border-radius:10px;font-size:13px;margin-top:8px}
+.flag.warn{background:#F3E7C9;color:#7a5a12}.flag.veto{background:#f0d9d0;color:#8a2f12}
+.ev{display:flex;gap:9px;padding:7px 0;font-size:13.5px;color:var(--ink-2);border-bottom:1px dashed var(--border)}
+.ev:last-child{border-bottom:0}.ev .dot{color:var(--accent)}
+.meta{color:var(--ink-3);font-size:12.5px;margin-top:14px;font-variant-numeric:tabular-nums}
+.divider{height:1px;background:var(--border);margin:18px 0}
+.note{color:var(--ink-3);font-size:12px;margin-top:18px}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div class="k">Reference implementation · M1 walking skeleton</div>
+    <h1>The engine, live</h1>
+    <p>This runs the real extraction-intelligence engine in your browser — reading the promoted principle library. Move the sliders; the <b>strategy</b> is built first, then the recipe, then the evidence. <span class="badge" id="pcount">— principles</span></p>
+  </header>
+
+  <div class="grid">
+    <!-- INTAKE -->
+    <div class="card">
+      <div class="label">The coffee</div>
+      <div class="field"><input type="text" id="origin" value="Panama Geisha" placeholder="e.g. Colombia Risaralda"></div>
+      <div class="field"><span class="label">Process</span>
+        <select id="process">
+          <option>Anaerobic Natural</option><option>Washed</option><option>Natural</option><option>Honey</option><option>Nitro Washed</option>
+        </select></div>
+      <div class="field"><span class="label">Roast level</span>
+        <select id="roast"><option>light</option><option>medium-light</option><option>medium</option><option>medium-dark</option><option>dark</option></select></div>
+
+      <div class="divider"></div>
+      <div class="label">What do you want from the cup?</div>
+      <div id="sliders"></div>
+      <button class="btn" id="brew" style="width:100%;margin-top:10px">Brew</button>
+      <div class="note">Tip: raise <b>Clarity</b> and <b>Sweetness</b> together to watch PRN-0001 fire.</div>
+    </div>
+
+    <!-- OUTPUT -->
+    <div>
+      <div class="judgement" id="judgement"><span class="pre">Coach</span><span id="jtext">Move a slider or press Brew…</span></div>
+      <div id="stateRow" style="margin:-8px 0 16px"></div>
+      <div class="card focal" style="margin-bottom:18px">
+        <h3>🎯 Extraction strategy <span class="tag" style="background:var(--accent-tint)">the product</span></h3>
+        <div id="strategy"></div>
+      </div>
+      <div class="card" style="margin-bottom:18px">
+        <h3>☕ Recipe <span style="color:var(--ink-3);font-weight:400;font-size:13px">— every parameter traces to the strategy</span></h3>
+        <div id="recipe"></div>
+        <div id="flags"></div>
+      </div>
+      <div class="card" style="margin-bottom:18px">
+        <h3>📚 Evidence <span style="color:var(--ink-3);font-weight:400;font-size:13px">— summary, not reasoning</span></h3>
+        <details style="margin-bottom:8px"><summary style="cursor:pointer;color:var(--ink-2);font-size:13px">Evidence profile</summary><div id="profile" style="margin-top:10px"></div></details>
+        <div id="evidence"></div>
+        <div class="meta" id="meta"></div>
+      </div>
+
+      <!-- M4: REFLECT & LEARN -->
+      <div class="card">
+        <h3>🍵 After the brew <span style="color:var(--ink-3);font-weight:400;font-size:13px">— how did it actually taste?</span></h3>
+        <div id="obsSliders"></div>
+        <div class="field" style="margin-top:8px"><span class="label">Notes (optional)</span>
+          <div id="noteChips" style="display:flex;flex-wrap:wrap;gap:7px"></div></div>
+        <button class="btn" id="diagnose" style="margin-top:12px">Diagnose this brew</button>
+        <div id="diagnosis" style="margin-top:16px"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!--ENGINE_BUNDLE-->
+
+<script>
+const AXES=['sweetness','clarity','body','acidity','floral','juiciness'];
+const DEFAULTS={sweetness:.8,clarity:.85,body:.45,acidity:.7,floral:.6,juiciness:.7};
+const sliders=document.getElementById('sliders');
+sliders.innerHTML=AXES.map(a=>`<div class="slider"><div class="cap"><b>${a[0].toUpperCase()+a.slice(1)}</b><span class="v" id="v_${a}">${Math.round(DEFAULTS[a]*100)}</span></div>
+  <input type="range" min="0" max="100" value="${Math.round(DEFAULTS[a]*100)}" id="s_${a}"></div>`).join('');
+
+function readInput(){
+  const intent={}; for(const a of AXES){const el=document.getElementById('s_'+a);intent[a]=(+el.value)/100;document.getElementById('v_'+a).textContent=el.value;}
+  return {coffee:{origin:document.getElementById('origin').value,process:document.getElementById('process').value,roastLevel:document.getElementById('roast').value},intent};
+}
+function esc(s){return String(s).replace(/[&<>]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;'}[c]));}
+
+async function run(){
+  if(!window.BrewEngine){document.getElementById('jtext').textContent='Engine bundle not loaded.';return;}
+  const r=await window.BrewEngine.recommend(readInput());
+  const b=r.bundle;
+  document.getElementById('jtext').textContent=r.narrative.judgement;
+  // Recommendation State chip + primary assumption
+  const stateColor={'Highly Supported':'var(--success)','Well Supported':'var(--sage)','Exploratory':'var(--warning)','Experimental':'var(--accent)'}[b.state]||'var(--ink-3)';
+  document.getElementById('stateRow').innerHTML=
+    `<span class="tag" style="background:${stateColor};color:#fff">${esc(b.state)}</span>`+
+    (b.assumptions[0]?`<span style="color:var(--ink-3);font-size:12.5px;margin-left:10px">${esc(b.assumptions[0])}</span>`:'');
+  // Evidence Profile pills (progressive — inside <details>)
+  const lvlColor=l=>({High:'var(--success)',Moderate:'var(--sage)',Limited:'var(--warning)',None:'var(--ink-3)'}[l]||'var(--ink-3)');
+  const dims=[['Scientific',b.profile.scientificSupport],['Consensus',b.profile.expertConsensus],['Coffee similarity',b.profile.coffeeSimilarity],['Freshness',b.profile.evidenceFreshness],['Coverage',b.profile.researchCoverage],['Source diversity',b.profile.sourceDiversity],['Stability',b.profile.recommendationStability]];
+  document.getElementById('profile').innerHTML='<div style="display:flex;flex-wrap:wrap;gap:8px">'+dims.map(([k,v])=>
+    `<span class="tag" style="background:var(--surface-2)"><b style="color:${lvlColor(v)}">${esc(v)}</b> · ${esc(k)}</span>`).join('')+'</div>';
+  const s=r.strategy;
+  document.getElementById('strategy').innerHTML=
+    `<div class="kv"><span class="k">primary</span><span class="val"><b>${esc(s.primary)}</b></span></div>`+
+    `<div class="kv"><span class="k">secondary</span><span class="val">${esc(s.secondary)}</span></div>`+
+    `<div class="kv"><span class="k">trade-off</span><span class="val">${esc(s.tradeoffs.join(', '))}</span></div>`+
+    `<div class="kv"><span class="k">target</span><span class="val">${esc(s.extractionTarget.position)}</span></div>`+
+    (s.methodHint?`<div class="kv"><span class="k">method</span><span class="val"><span class="tag">${esc(s.methodHint.split('—')[0].trim())}</span></span></div>`:'')+
+    `<div class="kv"><span class="k">rationale</span><span class="val">${esc(s.rationale)}</span></div>`;
+  document.getElementById('recipe').innerHTML=r.recipe.params.map(p=>
+    `<div class="param"><span class="n">${esc(p.name)}</span><span class="v">${esc(p.value)}</span><span class="b">← ${esc(p.because)}</span></div>`).join('');
+  document.getElementById('flags').innerHTML=(r.recipe.scienceFlags||[]).map(f=>`<div class="flag ${f.severity}">🔬 [${f.severity}] ${esc(f.message)}</div>`).join('')
+    || `<div class="meta">🔬 science gate passed — no flags</div>`;
+  const head=t=>`<div class="label" style="margin:12px 0 6px">${t}</div>`;
+  const support=(b.keySupporting.length?b.keySupporting:[{label:b.narrative,strength:''}])
+    .map(e=>`<div class="ev"><span class="dot">•</span><span>${esc(e.label)} ${e.strength?`<span style="color:var(--ink-3)">(${esc(e.strength)}${e.theme?' · '+esc(e.theme):''})</span>`:''}</span></div>`).join('');
+  const agree=b.consensus.map(c=>`<div class="ev" style="color:var(--success)"><span>+</span><span>${esc(c)}</span></div>`).join('');
+  const disagree=(b.conflicts||[]).map(c=>`<div class="ev" style="color:var(--warning)"><span>±</span><span>${esc(c.note)}</span></div>`).join('');
+  const unknowns=b.limitations.map(l=>`<div class="ev" style="color:var(--ink-3)"><span>?</span><span>${esc(l)}</span></div>`).join('');
+  document.getElementById('evidence').innerHTML=
+    `<div class="meta">Reviewed ${b.reviewedCount} piece(s) of evidence.</div>`+
+    head('Key supporting')+support+
+    (agree?head('Areas of agreement')+agree:'')+
+    (disagree?head('Areas of disagreement')+disagree:'')+
+    head('Remaining unknowns')+unknowns;
+  document.getElementById('meta').textContent=
+    `state ${b.state} · familiarity ${r.meta.familiarity.toFixed(2)} · research ${r.meta.researchFired} · applied ${r.meta.principlesUsed.map(p=>p.id).join(',')||'none'}`;
+}
+document.getElementById('pcount').textContent=(window.BrewEngine?window.BrewEngine.principleCount:0)+' active principle(s)';
+document.getElementById('brew').addEventListener('click',run);
+let t;['origin','process','roast'].concat(AXES.map(a=>'s_'+a)).forEach(id=>{const el=document.getElementById(id);el&&el.addEventListener('input',()=>{clearTimeout(t);t=setTimeout(run,120);});});
+
+/* ---- M4: reflect & learn ---- */
+const NOTES=['hollow','sour','bitter','astringent','muddy','weak','flat','clean','sweet'];
+const noteState={};
+document.getElementById('noteChips').innerHTML=NOTES.map(n=>`<span class="tag" data-note="${n}" style="cursor:pointer;background:var(--surface-2);color:var(--ink-2)">${n}</span>`).join('');
+document.querySelectorAll('[data-note]').forEach(el=>el.addEventListener('click',()=>{
+  const n=el.dataset.note; noteState[n]=!noteState[n];
+  el.style.background=noteState[n]?'var(--accent)':'var(--surface-2)'; el.style.color=noteState[n]?'#fff':'var(--ink-2)';
+}));
+const OBS=['sweetness','clarity','body','acidity'];
+document.getElementById('obsSliders').innerHTML=OBS.map(a=>`<div class="slider"><div class="cap"><b>${a[0].toUpperCase()+a.slice(1)}</b><span class="v" id="ov_${a}">50</span></div>
+  <input type="range" min="0" max="100" value="50" id="os_${a}"></div>`).join('');
+OBS.forEach(a=>{const el=document.getElementById('os_'+a);el.addEventListener('input',()=>document.getElementById('ov_'+a).textContent=el.value);});
+
+document.getElementById('diagnose').addEventListener('click',()=>{
+  const observed={}; for(const a of AXES){observed[a]=OBS.includes(a)?(+document.getElementById('os_'+a).value)/100:(window.BrewEngine.predictedCup()?.[a]??0.5);}
+  const notes=Object.keys(noteState).filter(n=>noteState[n]);
+  const d=window.BrewEngine.diagnose(observed,notes);
+  const el=document.getElementById('diagnosis');
+  if(!d){el.innerHTML='<div class="meta">Press Brew first.</div>';return;}
+  const adj=d.adjustments.map(a=>`<div class="ev"><span class="dot">✓</span><span><b>${esc(a.move)}</b> <span style="color:var(--ink-3)">(${esc(a.lever)})</span></span></div>`).join('');
+  el.innerHTML=`<div class="judgement" style="font-size:17px"><span class="pre">Diagnosis</span>${esc(d.cause)} — ${esc(d.because)}</div>${adj}
+    ${d.adjustments.length?`<button class="btn" id="applyLearn" style="margin-top:12px;background:var(--surface);color:var(--ink);border:1px solid var(--border-strong)">Apply to next brew ↑</button><div id="learnNote" class="meta" style="margin-top:8px"></div>`:''}`;
+  const ab=document.getElementById('applyLearn');
+  ab&&ab.addEventListener('click',async()=>{
+    const u=window.BrewEngine.applyLearning(d);
+    document.getElementById('learnNote').textContent='🧠 '+u.note+'  (scope: '+u.scope+')';
+    await run(); // next recommendation now reflects the calibration
+  });
+});
+run();
+</script>
+</body>
+</html>

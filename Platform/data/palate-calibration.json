@@ -1,0 +1,116 @@
+{
+  "_schema": "System 6 — Palate Calibration. Blind triangulation only. See Intelligence/Governance/Palate-Calibration.md",
+  "owner": "joseph",
+  "calibrators": [
+    {
+      "id": "champ-darren",
+      "name": "Darren",
+      "role": "calibrator",
+      "credential": "TODO — competition record / Q-grade",
+      "panelWeight": 1.0
+    },
+    {
+      "id": "champ-sweefong",
+      "name": "Swee Fong",
+      "role": "calibrator",
+      "credential": "TODO",
+      "panelWeight": 1.0
+    },
+    {
+      "id": "champ-xiaoqian",
+      "name": "Xiao Qian",
+      "role": "calibrator",
+      "credential": "TODO",
+      "panelWeight": 1.0
+    }
+  ],
+  "protocol": {
+    "blind": true,
+    "minSessions": 3,
+    "matureSessions": 8,
+    "rules": [
+      "All tasters score the SAME brew from the same batch, poured into identical cups.",
+      "No discussion, no visible logging, until every record is submitted.",
+      "Score all six axes 0-1 even if unsure — blanks bias the agreement rate.",
+      "Free descriptors are verbatim: write 'chamomile' if that is what you taste, do not translate yourself.",
+      "Vary the coffee across sessions (washed / natural / anaerobic, light and medium) — calibrating on one style only teaches one style.",
+      "With 3 calibrators, a session is admissible with any 2 present — panel spread is still measurable. A single calibrator gives translation data but no spread, so that session's reliability contribution is dropped."
+    ]
+  },
+  "sessions": [
+    {
+      "id": "CAL-0000-EXAMPLE",
+      "date": "2026-07-29",
+      "brewRef": "RCP-0001",
+      "coffeeFingerprint": "example-delete-me",
+      "blind": true,
+      "_note": "Illustrative shape only — delete this entry before the first real session.",
+      "records": [
+        {
+          "taster": "joseph",
+          "radar": {
+            "sweetness": 0.7,
+            "clarity": 0.8,
+            "body": 0.5,
+            "acidity": 0.75,
+            "floral": 0.8,
+            "juiciness": 0.65
+          },
+          "descriptors": [
+            "chamomile",
+            "mandarin",
+            "sugarcane"
+          ]
+        },
+        {
+          "taster": "champ-darren",
+          "radar": {
+            "sweetness": 0.72,
+            "clarity": 0.85,
+            "body": 0.45,
+            "acidity": 0.8,
+            "floral": 0.6,
+            "juiciness": 0.7
+          },
+          "descriptors": [
+            "jasmine",
+            "mandarin",
+            "cane sugar"
+          ]
+        },
+        {
+          "taster": "champ-sweefong",
+          "radar": {
+            "sweetness": 0.68,
+            "clarity": 0.82,
+            "body": 0.5,
+            "acidity": 0.78,
+            "floral": 0.62,
+            "juiciness": 0.68
+          },
+          "descriptors": [
+            "jasmine",
+            "citrus",
+            "honey"
+          ]
+        },
+        {
+          "taster": "champ-xiaoqian",
+          "radar": {
+            "sweetness": 0.7,
+            "clarity": 0.8,
+            "body": 0.48,
+            "acidity": 0.76,
+            "floral": 0.66,
+            "juiciness": 0.69
+          },
+          "descriptors": [
+            "jasmine",
+            "stone fruit",
+            "honey"
+          ]
+        }
+      ]
+    }
+  ]
+}

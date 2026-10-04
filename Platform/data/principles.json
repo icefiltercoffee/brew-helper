@@ -1,0 +1,307 @@
+[
+  {
+    "id": "PRN-0001",
+    "statement": "A valve-controlled two-stage brew (percolation then immersion) lets you develop acidity/florals and sweetness/body on separate clocks.",
+    "domain": "pour",
+    "mechanism": "Percolation with the valve open extracts the fast-dissolving acids and aromatics with fresh, moving water (clarity + brightness). Closing the valve switches to immersion, where extraction is driven by contact time — reaching the mid-curve sugars for sweetness and body without more turbulence. Splitting the brew decouples two goals that a single continuous pour forces you to trade off.\n",
+    "appliesWhen": [
+      "Hario Switch / valve brewers",
+      "coffees where you want both high clarity AND developed sweetness"
+    ],
+    "levers": [
+      "time",
+      "pour",
+      "agitation"
+    ],
+    "strategyImplication": "When the radar asks for clarity AND sweetness together (usually a conflict), reach for a staged percolation→immersion method instead of compromising in the middle.",
+    "confidence": 0.68,
+    "evidence": {
+      "sources": [
+        "SRC-0001",
+        "SRC-0002"
+      ],
+      "recipes": [
+        "RCP-0001",
+        "RCP-0002"
+      ],
+      "independentCount": 2,
+      "sourceMeta": [
+        {
+          "id": "SRC-0001",
+          "tier": "A",
+          "kind": "competition"
+        },
+        {
+          "id": "SRC-0002",
+          "tier": "B",
+          "kind": "community"
+        }
+      ]
+    },
+    "status": "active",
+    "version": 3
+  },
+  {
+    "id": "PRN-0002",
+    "statement": "Outflow resistance (holding water in immersion) builds sweetness and body through contact time, not agitation.",
+    "domain": "time",
+    "mechanism": "Closing the valve stops percolation and lets the slurry steep. Extraction continues via time and diffusion rather than turbulence, so you reach the mid-curve sugars (sweetness) and pull more dissolved solids (body) without the fines migration that agitation causes — avoiding astringency. Time is the gentle sweetness lever.\n",
+    "appliesWhen": [
+      "immersion or valve-hold stages",
+      "delicate/aromatic coffees where agitation risks astringency"
+    ],
+    "levers": [
+      "time",
+      "agitation"
+    ],
+    "strategyImplication": "To add sweetness/body while protecting a fragile cup, extend contact time instead of pouring harder or grinding much finer.",
+    "confidence": 0.6,
+    "evidence": {
+      "sources": [
+        "SRC-0001"
+      ],
+      "recipes": [
+        "RCP-0001"
+      ],
+      "independentCount": 1,
+      "sourceMeta": [
+        {
+          "id": "SRC-0001",
+          "tier": "A",
+          "kind": "competition"
+        }
+      ]
+    },
+    "status": "active",
+    "version": 2
+  },
+  {
+    "id": "PRN-0003",
+    "statement": "With an immersion stage carrying the extraction, you can grind coarser on a dense, aromatic coffee to protect clarity and florals.",
+    "domain": "grind",
+    "mechanism": "Coarse grind (~700µm here) lowers percolation resistance and produces fewer fines, which is where astringency and muddiness come from in fragile high-value coffees. Extraction that a finer grind would normally supply is instead provided by the immersion stage's contact time. You get enough extraction without the fines penalty — clarity and aromatics survive.\n",
+    "appliesWhen": [
+      "hybrid/immersion methods",
+      "dense anaerobic naturals / Geisha / delicate florals"
+    ],
+    "levers": [
+      "grind",
+      "time"
+    ],
+    "strategyImplication": "Pair a coarser grind with an immersion/hold when clarity+florals are the priority on a premium coffee; let time, not fineness, do the extracting.",
+    "confidence": 0.58,
+    "evidence": {
+      "sources": [
+        "SRC-0001"
+      ],
+      "recipes": [
+        "RCP-0001"
+      ],
+      "independentCount": 1,
+      "sourceMeta": [
+        {
+          "id": "SRC-0001",
+          "tier": "A",
+          "kind": "competition"
+        }
+      ]
+    },
+    "status": "active",
+    "version": 2
+  },
+  {
+    "id": "PRN-0004",
+    "statement": "Low-TDS, balanced Mg/Ca water (~50 ppm) gives enough extraction power for clarity and vibrant acidity without the harshness higher mineral/alkalinity adds.",
+    "domain": "water",
+    "mechanism": "Magnesium and calcium are the ions that actively pull flavour; a modest, balanced ~50 ppm gives real extraction power while keeping total dissolved content low, so acids stay bright and the cup stays transparent. Higher GH/alkalinity would raise extraction but buffer acidity and risk a heavier, duller, harsher cup.\n",
+    "appliesWhen": [
+      "clarity/acidity-forward goals",
+      "delicate aromatic coffees"
+    ],
+    "levers": [
+      "water"
+    ],
+    "strategyImplication": "For clarity + vibrant acidity, spec low-TDS balanced-mineral water; don't reach for high-hardness or high-buffer water.",
+    "confidence": 0.62,
+    "evidence": {
+      "sources": [
+        "SRC-0001",
+        "SRC-0003"
+      ],
+      "recipes": [
+        "RCP-0001",
+        "RCP-0005"
+      ],
+      "independentCount": 2,
+      "sourceMeta": [
+        {
+          "id": "SRC-0001",
+          "tier": "A",
+          "kind": "competition"
+        },
+        {
+          "id": "SRC-0003",
+          "tier": "B",
+          "kind": "community"
+        }
+      ]
+    },
+    "status": "active",
+    "version": 2
+  },
+  {
+    "id": "PRN-0005",
+    "statement": "Moderate brew temperature (~92°C) on a fragile anaerobic natural preserves volatile florals while still extracting sugars.",
+    "domain": "temp",
+    "mechanism": "Volatile aromatic compounds (hibiscus, red florals) are heat-sensitive; near-boiling water can blow past them and pull harsher solubles from an already-intense ferment. ~92°C is hot enough to extract a light roast's sugars but cool enough to keep the delicate top notes intact and the cup clean rather than boozy.\n",
+    "appliesWhen": [
+      "anaerobic / carbonic / high-ferment naturals",
+      "floral-forward light roasts"
+    ],
+    "levers": [
+      "temp"
+    ],
+    "strategyImplication": "Protect aromatics on fragile ferments with a moderate temp; reserve hotter water for dense, under-developed light roasts that need the energy.",
+    "confidence": 0.58,
+    "evidence": {
+      "sources": [
+        "SRC-0001"
+      ],
+      "recipes": [
+        "RCP-0001"
+      ],
+      "independentCount": 1,
+      "sourceMeta": [
+        {
+          "id": "SRC-0001",
+          "tier": "A",
+          "kind": "competition"
+        }
+      ]
+    },
+    "status": "active",
+    "version": 2
+  },
+  {
+    "id": "PRN-0009",
+    "statement": "Cooler water + a coarser grind + minimal agitation biases a brew toward sweetness and balance, suppressing bitterness.",
+    "domain": "temp",
+    "mechanism": "Lower temperature limits extraction of the late, bitter/phenolic compounds; a coarser grind keeps flow efficient so the cup isn't under-extracted despite the cooler water; few, gentle pours reduce fines migration and astringency. Together they land mid-curve — sweet and rounded — rather than pushing extraction into harshness.\n",
+    "appliesWhen": [
+      "washed/medium coffees where sweetness+approachability is the goal",
+      "not ideal for dense, very light roasts (risk under-extraction)"
+    ],
+    "levers": [
+      "temp",
+      "grind",
+      "agitation"
+    ],
+    "strategyImplication": "When the goal is sweetness/balance over intensity, drop temp (~90–92°C), coarsen grind, and minimise agitation.",
+    "confidence": 0.6,
+    "evidence": {
+      "sources": [
+        "SRC-0003"
+      ],
+      "recipes": [
+        "RCP-0006",
+        "RCP-0007"
+      ],
+      "independentCount": 2,
+      "sourceMeta": [
+        {
+          "id": "SRC-0003",
+          "tier": "B",
+          "kind": "community"
+        }
+      ]
+    },
+    "status": "active",
+    "version": 2
+  },
+  {
+    "id": "PRN-0010",
+    "statement": "Brew ratio trades concentration for clarity: tighter (~1:15) builds sweetness and body; wider (~1:17) increases flavour separation.",
+    "domain": "ratio",
+    "mechanism": "A tighter ratio raises beverage TDS (strength), so sweetness and body read louder. A wider ratio dilutes the cup, spreading the same solubles thinner so subtle, distinct notes become individually perceptible — clarity and separation at the cost of intensity.\n",
+    "appliesWhen": [
+      "choosing target strength vs transparency",
+      "iced coffee: concentrate the pour to pre-offset planned ice dilution"
+    ],
+    "levers": [
+      "ratio"
+    ],
+    "strategyImplication": "Pick ratio by intent: ~1:15 when Sweetness/Body lead; ~1:17 when Clarity/separation leads. For iced, concentrate further (~1:10-11) to survive dilution.",
+    "confidence": 0.63,
+    "evidence": {
+      "sources": [
+        "SRC-0003",
+        "SRC-0007"
+      ],
+      "recipes": [
+        "RCP-0003",
+        "RCP-0005",
+        "RCP-0012",
+        "RCP-0013",
+        "RCP-0014"
+      ],
+      "independentCount": 3,
+      "sourceMeta": [
+        {
+          "id": "SRC-0003",
+          "tier": "B",
+          "kind": "community"
+        },
+        {
+          "id": "SRC-0007",
+          "tier": "C",
+          "kind": "community"
+        }
+      ]
+    },
+    "status": "active",
+    "version": 3
+  },
+  {
+    "id": "PRN-0011",
+    "statement": "A large bloom (3–4× the dose) degasses fresh/light roasts thoroughly, giving a more uniform extraction bed.",
+    "domain": "bloom",
+    "mechanism": "CO₂ trapped in fresh, lightly-roasted coffee repels water and causes uneven extraction. A generous bloom (3–4× dose) saturates fully and releases that gas before the main pours, so subsequent water contacts the grounds evenly — raising extraction uniformity and sweetness.\n",
+    "appliesWhen": [
+      "fresh coffees (<2–3 weeks)",
+      "light roasts",
+      "deep beds / higher doses"
+    ],
+    "levers": [
+      "bloom"
+    ],
+    "strategyImplication": "For fresh/light coffees, bloom at 3–4× dose (not the usual 2×) to degas before extracting.",
+    "confidence": 0.64,
+    "evidence": {
+      "sources": [
+        "SRC-0003",
+        "SRC-0007"
+      ],
+      "recipes": [
+        "RCP-0003",
+        "RCP-0005",
+        "RCP-0008",
+        "RCP-0014"
+      ],
+      "independentCount": 4,
+      "sourceMeta": [
+        {
+          "id": "SRC-0003",
+          "tier": "B",
+          "kind": "community"
+        },
+        {
+          "id": "SRC-0007",
+          "tier": "C",
+          "kind": "community"
+        }
+      ]
+    },
+    "status": "active",
+    "version": 3
+  }
+]

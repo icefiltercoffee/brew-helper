@@ -1,0 +1,345 @@
+# Brew Helper — Source Registry (source of truth). Quality over quantity.
+# Runtime allowlist (Platform/config/source-registry.json) is GENERATED from this file.
+# tier: A = can originate principles · B = corroborate / co-originate · C = corroborate only.
+#
+# CATEGORY RULE — any World Brewers Cup CHAMPIONSHIP recipe = credibility 88, Tier A
+#   (parity with Kasuya), regardless of the individual competitor. Applied to WBrC-champion
+#   sources here and to any ingested WBrC-championship recipe (e.g. SRC-0001 Nas Jaafar).
+
+version: 2026-07-26
+sources:
+
+  - id: SRC-REG-000
+    name: "coffeeDB — specialty coffee discovery index"
+    category: Coffee Directory
+    expertise: [process, variety, general]
+    tier: C
+    credibility: 55
+    best_for: [roaster discovery, coffee metadata]
+    prioritise_when: "identifying a roaster or coffee listing"
+    avoid_when: "brewing mechanics, scientific claims, or universal recommendations"
+    philosophy: "directory metadata is discovery evidence, not extraction evidence"
+    freshness: active
+    urls: [www.coffeedb.pro]
+
+  # ── Coffee Science / Researchers (first principles) ──
+  - id: SRC-REG-001
+    name: "Jonathan Gagné — Coffee ad Astra / 'The Physics of Filter Coffee'"
+    category: Researcher
+    expertise: [extraction, water, grind, sensory, general]
+    tier: A
+    credibility: 94
+    best_for: [extraction physics, particle size, flow & percolation, water]
+    prioritise_when: "any question needing first-principles / quantitative grounding"
+    avoid_when: "producer- or lot-specific detail; competition showmanship"
+    philosophy: "physicist's rigour; measurement over dogma; quantifies what others assert"
+    freshness: active
+    urls: [coffeeadastra.com]
+
+  - id: SRC-REG-002
+    name: "Christopher H. Hendon (Prof. Hendon) — coffee chemistry / 'Water for Coffee'"
+    category: Researcher
+    expertise: [water, extraction, roast]
+    tier: A
+    credibility: 93
+    best_for: [water chemistry, solubility, extraction thermodynamics]
+    prioritise_when: "water composition, temperature dynamics, chemistry disputes"
+    avoid_when: "hands-on pour technique"
+    philosophy: "peer-reviewed computational chemistry; cautious, evidence-first"
+    freshness: evergreen
+    urls: []
+
+  - id: SRC-REG-003
+    name: "Specialty Coffee Association (SCA) — standards & research"
+    category: Scientific Journal
+    expertise: [extraction, sensory, general]
+    tier: A
+    credibility: 88
+    best_for: [extraction/brewing standards, cupping protocol, definitions]
+    prioritise_when: "need a neutral standard or reference definition"
+    avoid_when: "cutting-edge technique (standards lag practice)"
+    philosophy: "consensus standards body; conservative, reproducible"
+    freshness: evergreen
+    urls: [sca.coffee]
+
+  - id: SRC-REG-004
+    name: "'Water for Coffee' (Colonna-Dashwood & Hendon)"
+    category: Academic Paper
+    expertise: [water, extraction]
+    tier: A
+    credibility: 92
+    best_for: [water hardness/alkalinity, mineral effects on extraction]
+    prioritise_when: "water recipe / mineral questions"
+    avoid_when: "brew-motion technique"
+    philosophy: "book-length, chemistry-grounded reference"
+    freshness: evergreen
+    urls: []
+
+  # ── World Brewers Cup / Barista Champions ──
+  - id: SRC-REG-010
+    name: "James Hoffmann"
+    category: Educational YouTube
+    expertise: [extraction, grind, equipment, general]
+    tier: C
+    credibility: 62
+    best_for: [general technique demos, gear overviews, popular explainers]
+    prioritise_when: "casual background / corroboration only"
+    avoid_when: "as sole basis for a claim — corroborate with A-tier"
+    philosophy: "2007 World Barista Champion, popular educator; editor down-weighted (Joseph) — treat as publication-tier, not authority"
+    freshness: active
+    urls: ["youtube.com/@jameshoffmann"]
+
+  - id: SRC-REG-011
+    name: "Tetsu Kasuya — 4:6 method"
+    category: WBrC Champion
+    expertise: [extraction, pour]
+    tier: A
+    credibility: 88
+    best_for: [pour-structure control, sweetness vs strength via ratio splitting]
+    prioritise_when: "V60 pour design; dialing sweetness/strength independently"
+    avoid_when: "espresso; water chemistry"
+    philosophy: "2016 World Brewers Cup champion; staged-pour control"
+    freshness: active
+    urls: []
+
+  - id: SRC-REG-012
+    name: "Matt Perger — Barista Hustle (founder)"
+    category: WBrC Champion
+    expertise: [extraction, grind, sensory, general]
+    tier: A
+    credibility: 88            # WBrC champion → parity with Kasuya (registry rule)
+    best_for: [extraction theory, grind distribution, EY/TDS framing]
+    prioritise_when: "extraction-yield reasoning; grind & agitation theory"
+    avoid_when: "some strong opinions — corroborate contested claims"
+    philosophy: "World Brewers Cup 2012 champion; data-forward, opinionated"
+    freshness: active
+    urls: [baristahustle.com]
+
+  - id: SRC-REG-013
+    name: "Tim Wendelboe"
+    category: Roaster
+    expertise: [roast, process, variety, general]
+    tier: A
+    credibility: 87
+    best_for: [origin/process character, roasting for filter, lot context]
+    prioritise_when: "understanding a bean's origin/process/roast intent"
+    avoid_when: "equipment-agnostic brew mechanics"
+    philosophy: "2004 World Barista Champion & Oslo roaster; terroir-forward, light-roast clarity"
+    freshness: active
+    urls: [timwendelboe.no]
+
+  # ── Professional Brewers / Educators ──
+  - id: SRC-REG-020
+    name: "Scott Rao"
+    category: Professional Brewer
+    expertise: [extraction, roast, grind]
+    tier: A
+    credibility: 90
+    best_for: [extraction uniformity, agitation, roasting theory]
+    prioritise_when: "even-extraction technique; roast-development questions"
+    avoid_when: "casual/beginner framing — can be prescriptive"
+    philosophy: "author/consultant; precise, uniformity-obsessed, sometimes dogmatic"
+    freshness: active
+    urls: [scottrao.com]
+
+  - id: SRC-REG-021
+    name: "Barista Hustle (education platform)"
+    category: Education Platform
+    expertise: [extraction, water, grind, sensory, general]
+    tier: A
+    credibility: 86
+    best_for: [structured courses, water recipes, extraction fundamentals]
+    prioritise_when: "need a taught, referenced explanation of a concept"
+    avoid_when: "single-lot specifics"
+    philosophy: "curriculum-grade; evidence-referenced"
+    freshness: active
+    urls: [baristahustle.com]
+
+  - id: SRC-REG-022
+    name: "Lance Hedrick"
+    category: Educational YouTube
+    expertise: [extraction, grind, equipment]
+    tier: B
+    credibility: 80
+    best_for: [practical pour-over & espresso technique, grinder behaviour]
+    prioritise_when: "hands-on technique demos; gear-specific tips"
+    avoid_when: "sole basis for a claim — corroborate with A-tier"
+    philosophy: "practitioner-educator; experimental, detail-heavy"
+    freshness: active
+    urls: ["youtube.com/@LanceHedrick"]
+
+  # ── Roasters (origin / lot context + house recipes) ──
+  - id: SRC-REG-030
+    name: "Onyx Coffee Lab — brew guides"
+    category: Roaster
+    expertise: [process, variety, general]
+    tier: B
+    credibility: 80
+    best_for: [lot-specific brew guides, tasting targets]
+    prioritise_when: "a bean this roaster sells; house recipe as a starting point"
+    avoid_when: "generalising a house recipe to all coffees"
+    philosophy: "competition-driven US roaster; clarity-forward guides"
+    freshness: active
+    urls: [onyxcoffeelab.com]
+
+  - id: SRC-REG-031
+    name: "SEY Coffee"
+    category: Roaster
+    expertise: [process, variety]
+    tier: B
+    credibility: 78
+    best_for: [light-roast washed/natural context, flavour targets]
+    prioritise_when: "delicate, high-clarity light roasts"
+    avoid_when: "equipment mechanics"
+    philosophy: "NYC light-roast specialist; transparency-forward"
+    freshness: active
+    urls: [seycoffee.com]
+
+  # ── Equipment Manufacturers (their own gear only) ──
+  - id: SRC-REG-040
+    name: "Hario (V60 · Switch)"
+    category: Equipment Manufacturer
+    expertise: [equipment]
+    tier: B
+    credibility: 72
+    best_for: [device specs, official method for their brewers]
+    prioritise_when: "how a Hario device is designed to be used"
+    avoid_when: "objective performance vs competitors (self-interest) → Tier C"
+    philosophy: "manufacturer; authoritative on own gear, promotional otherwise"
+    freshness: evergreen
+    urls: [hario.com]
+
+  - id: SRC-REG-041
+    name: "Fellow (Ode · Stagg)"
+    category: Equipment Manufacturer
+    expertise: [equipment]
+    tier: B
+    credibility: 72
+    best_for: [grinder/kettle specs, official settings]
+    prioritise_when: "Fellow device calibration/specs"
+    avoid_when: "comparative performance claims → Tier C"
+    philosophy: "manufacturer; design-led"
+    freshness: evergreen
+    urls: [fellowproducts.com]
+
+  # ── Coffee Publications (news / context, corroborate) ──
+  - id: SRC-REG-050
+    name: "Perfect Daily Grind"
+    category: Coffee Publication
+    expertise: [process, variety, general]
+    tier: C
+    credibility: 62
+    best_for: [origin/process explainers, industry context]
+    prioritise_when: "background context on a producer/region/process"
+    avoid_when: "extraction technique claims (corroborate only)"
+    philosophy: "industry publication; broad, uneven depth"
+    freshness: active
+    urls: [perfectdailygrind.com]
+
+  - id: SRC-REG-051
+    name: "Standart Magazine"
+    category: Coffee Publication
+    expertise: [variety, process, sensory]
+    tier: C
+    credibility: 64
+    best_for: [producer stories, sensory language, culture]
+    prioritise_when: "narrative/context on a coffee or producer"
+    avoid_when: "quantitative extraction claims"
+    philosophy: "editorial magazine; considered, qualitative"
+    freshness: active
+    urls: [standartmag.com]
+
+  # ── Competition reporting / champion-recipe recaps ──
+  - id: SRC-REG-052
+    name: "Barista Magazine Online — competition recipe coverage"
+    category: Coffee Publication
+    expertise: [extraction, pour, water, sensory]
+    tier: B
+    credibility: 74
+    best_for: [champion-routine recaps, stage-by-stage recipe detail, competition context]
+    prioritise_when: "a write-up attributes a complete routine directly to a named competitor or official event material"
+    avoid_when: "the article is a recap without full parameters, a primary recording, or an explicit mechanism — corroborate before generalising"
+    philosophy: "specialty-coffee trade publication; useful editorial reporting, but secondary to the competitor or official routine"
+    freshness: active
+    urls: [baristamagazine.com]
+
+  - id: SRC-REG-053
+    name: "Sprudge — World Brewers Cup coverage"
+    category: Coffee Publication
+    expertise: [extraction, pour, water, sensory, general]
+    tier: B
+    credibility: 76
+    best_for: [event reporting, finalist routines, named competitor recipe details]
+    prioritise_when: "the article documents a named competition routine with measurable parameters or links to primary footage"
+    avoid_when: "editorial interpretation, sponsor framing, or incomplete parameters are being used as a scientific claim"
+    philosophy: "specialty-coffee journalism; strong event access, but competition recipes remain context-specific evidence"
+    freshness: active
+    urls: [sprudge.com]
+
+  - id: SRC-REG-054
+    name: "Slow Pour Supply — champion recipe recaps"
+    category: Coffee Publication
+    expertise: [extraction, pour, water, equipment, sensory]
+    tier: B
+    credibility: 72
+    best_for: [well-specified champion recipe recaps, water specifications, pour schedules, equipment context]
+    prioritise_when: "the recap preserves measurable parameters and identifies the named champion routine"
+    avoid_when: "product claims, retailer commentary, or unusual values lack a primary recording or independent corroboration"
+    philosophy: "specialty gear retailer and competition supporter; exact practical detail is useful, but commercial context requires a sceptical read"
+    freshness: active
+    urls: [slowpoursupply.co]
+
+  - id: SRC-REG-055
+    name: "European Coffee Trip — champion brew guides"
+    category: Coffee Publication
+    expertise: [extraction, pour, grind, equipment, sensory]
+    tier: B
+    credibility: 78
+    best_for: [video-backed champion recipes, explicit grind and pour schedules, equipment-specific method]
+    prioritise_when: "a written guide is paired with named competitor footage or a direct competitor demonstration"
+    avoid_when: "generalising a custom competition setup to unrelated brewers or treating one routine as universal physics"
+    philosophy: "specialty-coffee media with visual documentation; strong reproducibility, still secondary to official competitor materials"
+    freshness: active
+    urls: [europeancoffeetrip.com]
+
+  # ── Roasters (added per Joseph) ──
+  - id: SRC-REG-032
+    name: "Apartment Coffee (Tokyo)"
+    category: Roaster
+    expertise: [extraction, process, variety, general]
+    tier: B
+    credibility: 82           # QC-grade recipes (water chem + TDS/EY targets) → top of Tier B
+    best_for: [clarity-first V60 recipes, water/TDS/EY targets, light-roast method]
+    prioritise_when: "high-clarity filter method; well-specified brew standards"
+    avoid_when: "espresso; frontier chemistry (defer to researchers)"
+    philosophy: "Tokyo roaster/cafe; quality-control precision, clarity-forward, unusually well-documented"
+    freshness: active
+    urls: [apartment.coffee]
+
+  - id: SRC-REG-033
+    name: "Glitch Coffee & Roasters (Tokyo)"
+    category: Roaster
+    expertise: [process, variety, roast]
+    tier: B
+    credibility: 80
+    best_for: [light-roast single-origin context, delicate/floral lots, tasting targets]
+    prioritise_when: "delicate high-clarity light roasts; single-origin character"
+    avoid_when: "equipment mechanics; dark-roast/espresso"
+    philosophy: "Tokyo light-roast specialist; clarity and origin transparency"
+    freshness: active
+    urls: [glitchcoffee.com]
+
+  - id: SRC-REG-034
+    name: "Roca Coffee Roasters"
+    category: Roaster
+    expertise: [process, variety, general]
+    tier: B
+    credibility: 78
+    best_for: [lot-specific brew guides, tasting targets]
+    prioritise_when: "a bean this roaster sells; house recipe as a starting point"
+    avoid_when: "generalising a house recipe to all coffees; equipment mechanics"
+    philosophy: "specialty roaster; house recipes as starting points"
+    freshness: active
+    urls: []
+
+# deprecated: []   # retired sources move here with a reason (never deleted)

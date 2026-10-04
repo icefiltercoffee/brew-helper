@@ -1,0 +1,317 @@
+{
+  "$comment": "GENERATED from Intelligence/Governance/Source-Registry/sources.yaml — do not hand-edit.",
+  "generatedFrom": "sources.yaml",
+  "version": "2026-07-26",
+  "defaults": {
+    "respectRobotsTxt": true,
+    "maxSourcesPerRequest": 5,
+    "cacheTtlHours": 168
+  },
+  "sources": [
+    {
+      "match": "www.coffeedb.pro",
+      "domain": "www.coffeedb.pro",
+      "name": "coffeeDB — specialty coffee discovery index",
+      "tier": "C",
+      "credibility": 55,
+      "category": "Coffee Directory",
+      "expertise": [
+        "process",
+        "variety",
+        "general"
+      ],
+      "avoid_when": "brewing mechanics, scientific claims, or universal recommendations"
+    },
+    {
+      "match": "coffeeadastra.com",
+      "domain": "coffeeadastra.com",
+      "name": "Jonathan Gagné — Coffee ad Astra / 'The Physics of Filter Coffee'",
+      "tier": "A",
+      "credibility": 94,
+      "category": "Researcher",
+      "expertise": [
+        "extraction",
+        "water",
+        "grind",
+        "sensory",
+        "general"
+      ],
+      "avoid_when": "producer- or lot-specific detail; competition showmanship"
+    },
+    {
+      "match": "sca.coffee",
+      "domain": "sca.coffee",
+      "name": "Specialty Coffee Association (SCA) — standards & research",
+      "tier": "A",
+      "credibility": 88,
+      "category": "Scientific Journal",
+      "expertise": [
+        "extraction",
+        "sensory",
+        "general"
+      ],
+      "avoid_when": "cutting-edge technique (standards lag practice)"
+    },
+    {
+      "match": "youtube.com/@jameshoffmann",
+      "domain": "youtube.com",
+      "name": "James Hoffmann",
+      "tier": "C",
+      "credibility": 62,
+      "category": "Educational YouTube",
+      "expertise": [
+        "extraction",
+        "grind",
+        "equipment",
+        "general"
+      ],
+      "avoid_when": "as sole basis for a claim — corroborate with A-tier"
+    },
+    {
+      "match": "baristahustle.com",
+      "domain": "baristahustle.com",
+      "name": "Matt Perger — Barista Hustle (founder)",
+      "tier": "A",
+      "credibility": 88,
+      "category": "WBrC Champion",
+      "expertise": [
+        "extraction",
+        "grind",
+        "sensory",
+        "general"
+      ],
+      "avoid_when": "some strong opinions — corroborate contested claims"
+    },
+    {
+      "match": "timwendelboe.no",
+      "domain": "timwendelboe.no",
+      "name": "Tim Wendelboe",
+      "tier": "A",
+      "credibility": 87,
+      "category": "Roaster",
+      "expertise": [
+        "roast",
+        "process",
+        "variety",
+        "general"
+      ],
+      "avoid_when": "equipment-agnostic brew mechanics"
+    },
+    {
+      "match": "scottrao.com",
+      "domain": "scottrao.com",
+      "name": "Scott Rao",
+      "tier": "A",
+      "credibility": 90,
+      "category": "Professional Brewer",
+      "expertise": [
+        "extraction",
+        "roast",
+        "grind"
+      ],
+      "avoid_when": "casual/beginner framing — can be prescriptive"
+    },
+    {
+      "match": "baristahustle.com",
+      "domain": "baristahustle.com",
+      "name": "Barista Hustle (education platform)",
+      "tier": "A",
+      "credibility": 86,
+      "category": "Education Platform",
+      "expertise": [
+        "extraction",
+        "water",
+        "grind",
+        "sensory",
+        "general"
+      ],
+      "avoid_when": "single-lot specifics"
+    },
+    {
+      "match": "youtube.com/@LanceHedrick",
+      "domain": "youtube.com",
+      "name": "Lance Hedrick",
+      "tier": "B",
+      "credibility": 80,
+      "category": "Educational YouTube",
+      "expertise": [
+        "extraction",
+        "grind",
+        "equipment"
+      ],
+      "avoid_when": "sole basis for a claim — corroborate with A-tier"
+    },
+    {
+      "match": "onyxcoffeelab.com",
+      "domain": "onyxcoffeelab.com",
+      "name": "Onyx Coffee Lab — brew guides",
+      "tier": "B",
+      "credibility": 80,
+      "category": "Roaster",
+      "expertise": [
+        "process",
+        "variety",
+        "general"
+      ],
+      "avoid_when": "generalising a house recipe to all coffees"
+    },
+    {
+      "match": "seycoffee.com",
+      "domain": "seycoffee.com",
+      "name": "SEY Coffee",
+      "tier": "B",
+      "credibility": 78,
+      "category": "Roaster",
+      "expertise": [
+        "process",
+        "variety"
+      ],
+      "avoid_when": "equipment mechanics"
+    },
+    {
+      "match": "hario.com",
+      "domain": "hario.com",
+      "name": "Hario (V60 · Switch)",
+      "tier": "B",
+      "credibility": 72,
+      "category": "Equipment Manufacturer",
+      "expertise": [
+        "equipment"
+      ],
+      "avoid_when": "objective performance vs competitors (self-interest) → Tier C"
+    },
+    {
+      "match": "fellowproducts.com",
+      "domain": "fellowproducts.com",
+      "name": "Fellow (Ode · Stagg)",
+      "tier": "B",
+      "credibility": 72,
+      "category": "Equipment Manufacturer",
+      "expertise": [
+        "equipment"
+      ],
+      "avoid_when": "comparative performance claims → Tier C"
+    },
+    {
+      "match": "perfectdailygrind.com",
+      "domain": "perfectdailygrind.com",
+      "name": "Perfect Daily Grind",
+      "tier": "C",
+      "credibility": 62,
+      "category": "Coffee Publication",
+      "expertise": [
+        "process",
+        "variety",
+        "general"
+      ],
+      "avoid_when": "extraction technique claims (corroborate only)"
+    },
+    {
+      "match": "standartmag.com",
+      "domain": "standartmag.com",
+      "name": "Standart Magazine",
+      "tier": "C",
+      "credibility": 64,
+      "category": "Coffee Publication",
+      "expertise": [
+        "variety",
+        "process",
+        "sensory"
+      ],
+      "avoid_when": "quantitative extraction claims"
+    },
+    {
+      "match": "baristamagazine.com",
+      "domain": "baristamagazine.com",
+      "name": "Barista Magazine Online — competition recipe coverage",
+      "tier": "B",
+      "credibility": 74,
+      "category": "Coffee Publication",
+      "expertise": [
+        "extraction",
+        "pour",
+        "water",
+        "sensory"
+      ],
+      "avoid_when": "the article is a recap without full parameters, a primary recording, or an explicit mechanism — corroborate before generalising"
+    },
+    {
+      "match": "sprudge.com",
+      "domain": "sprudge.com",
+      "name": "Sprudge — World Brewers Cup coverage",
+      "tier": "B",
+      "credibility": 76,
+      "category": "Coffee Publication",
+      "expertise": [
+        "extraction",
+        "pour",
+        "water",
+        "sensory",
+        "general"
+      ],
+      "avoid_when": "editorial interpretation, sponsor framing, or incomplete parameters are being used as a scientific claim"
+    },
+    {
+      "match": "slowpoursupply.co",
+      "domain": "slowpoursupply.co",
+      "name": "Slow Pour Supply — champion recipe recaps",
+      "tier": "B",
+      "credibility": 72,
+      "category": "Coffee Publication",
+      "expertise": [
+        "extraction",
+        "pour",
+        "water",
+        "equipment",
+        "sensory"
+      ],
+      "avoid_when": "product claims, retailer commentary, or unusual values lack a primary recording or independent corroboration"
+    },
+    {
+      "match": "europeancoffeetrip.com",
+      "domain": "europeancoffeetrip.com",
+      "name": "European Coffee Trip — champion brew guides",
+      "tier": "B",
+      "credibility": 78,
+      "category": "Coffee Publication",
+      "expertise": [
+        "extraction",
+        "pour",
+        "grind",
+        "equipment",
+        "sensory"
+      ],
+      "avoid_when": "generalising a custom competition setup to unrelated brewers or treating one routine as universal physics"
+    },
+    {
+      "match": "apartment.coffee",
+      "domain": "apartment.coffee",
+      "name": "Apartment Coffee (Tokyo)",
+      "tier": "B",
+      "credibility": 82,
+      "category": "Roaster",
+      "expertise": [
+        "extraction",
+        "process",
+        "variety",
+        "general"
+      ],
+      "avoid_when": "espresso; frontier chemistry (defer to researchers)"
+    },
+    {
+      "match": "glitchcoffee.com",
+      "domain": "glitchcoffee.com",
+      "name": "Glitch Coffee & Roasters (Tokyo)",
+      "tier": "B",
+      "credibility": 80,
+      "category": "Roaster",
+      "expertise": [
+        "process",
+        "variety",
+        "roast"
+      ],
+      "avoid_when": "equipment mechanics; dark-roast/espresso"
+    }
+  ],
+  "blocklist": []
+}

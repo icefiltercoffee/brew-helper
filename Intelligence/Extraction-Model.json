@@ -1,0 +1,174 @@
+{
+  "_note": "Machine-readable projection of Interpretation-Heuristics.md, consumed by build/sync-brew-data.py to drive the dashboard. Edit this (or the recipes in the Knowledge Repository) and re-run the sync — the dashboard regenerates. Prose heuristics remain the human source of truth; this is their structured shadow.",
+  "axes": ["Sweetness", "Floral", "Acidity", "Juiciness", "Body", "Clarity"],
+  "presets": {
+    "sweet":    [0.90, 0.50, 0.45, 0.80, 0.70, 0.50],
+    "clarity":  [0.60, 0.62, 0.55, 0.50, 0.42, 0.80],
+    "body":     [0.75, 0.40, 0.40, 0.60, 0.90, 0.45],
+    "balanced": [0.62, 0.60, 0.58, 0.60, 0.60, 0.62],
+    "floral":   [0.55, 0.88, 0.70, 0.55, 0.40, 0.78]
+  },
+  "coupling": {
+    "gain": 0.55,
+    "_source": "Interpretation-Heuristics §4 — the six axes are competing constraints, not independent dials.",
+    "pairs": [
+      { "a": "Sweetness", "b": "Floral",    "v": -0.30, "why": "protect aromatics vs reach the sugars" },
+      { "a": "Sweetness", "b": "Body",      "v": -0.35, "why": "chasing clean sweetness trades away body" },
+      { "a": "Sweetness", "b": "Juiciness", "v":  0.40, "why": "juiciness = sweetness + acidity + texture" },
+      { "a": "Sweetness", "b": "Clarity",   "v": -0.15, "why": "mild tension, usually resolvable" },
+      { "a": "Floral",    "b": "Acidity",   "v":  0.35, "why": "both early-curve, aromatic" },
+      { "a": "Floral",    "b": "Body",      "v": -0.40, "why": "floral costs body / extraction depth" },
+      { "a": "Floral",    "b": "Clarity",   "v":  0.35, "why": "both reward delicate, gentle handling" },
+      { "a": "Acidity",   "b": "Juiciness", "v":  0.35, "why": "acidity structures juiciness" },
+      { "a": "Acidity",   "b": "Body",      "v": -0.25, "why": "fuller/darker leans low-acid" },
+      { "a": "Acidity",   "b": "Clarity",   "v":  0.30, "why": "bright and clean travel together" },
+      { "a": "Body",      "b": "Clarity",   "v": -0.60, "why": "the strong antagonists — pull opposite ways" }
+    ]
+  },
+  "radar_interpretation": {
+    "meaning": "Desired sensory priorities; not guarantees, independent extraction controls, fixed recipe deltas, or a zero-sum budget.",
+    "preserve_raw_0_100": false,
+    "visible_direct_coupling": true,
+    "coupling_rule": "Dragging one axis visibly updates synergistic and antagonistic axes using the coupling matrix. Display the resulting values; never hide the coupled movement.",
+    "normalise_to_fixed_total": false,
+    "influence_curve": "smoothstep",
+    "flat_profile_max_spread": 10,
+    "zones": [
+      { "min": 0, "max": 20, "label": "strongly deprioritised" },
+      { "min": 21, "max": 40, "label": "mildly deprioritised" },
+      { "min": 41, "max": 59, "label": "neutral" },
+      { "min": 60, "max": 79, "label": "moderately prioritised" },
+      { "min": 80, "max": 100, "label": "strongly prioritised" }
+    ],
+    "conflict_rule": "Note conflict only when opposing priorities are both extreme, equipment cannot support both, and compromise materially weakens both.",
+    "flat_rule": "Preserve baseline character; optimise coherence and evenness with small balancing changes."
+  },
+  "keywords": {
+    "_note": "Synonyms used to infer process/roast from a pasted coffee description when the dropdowns are left empty. First match wins (longest phrases first).",
+    "process": {
+      "Nitro Washed": ["nitro washed", "nitro"],
+      "Carbonic maceration": ["carbonic maceration", "carbonic"],
+      "Anaerobic": ["anaerobic", "anaerobico"],
+      "Honey": ["honey process", "honey", "pulped natural", "yellow honey", "red honey", "black honey"],
+      "Washed": ["fully washed", "washed", "wet process"],
+      "Natural": ["natural process", "natural", "dry process"]
+    },
+    "roast": {
+      "Medium-dark": ["medium-dark", "medium dark"],
+      "Medium-light": ["medium-light", "medium light"],
+      "Light": ["light roast", "light-roast", "light"],
+      "Medium": ["medium roast", "medium"],
+      "Dark": ["dark roast", "dark"]
+    }
+  },
+  "grind": {
+    "_note": "Concrete grind/temp starting points by roast, used to build the General Advice headline. Grind is described relative to a filter/V60 baseline.",
+    "Light": { "grind": "grind fine (finer than your usual filter setting)", "temp": "94–96°C" },
+    "Medium-light": { "grind": "grind medium-fine", "temp": "93–95°C" },
+    "Medium": { "grind": "grind medium", "temp": "92–94°C" },
+    "Medium-dark": { "grind": "grind one step coarser than medium", "temp": "90–92°C" },
+    "Dark": { "grind": "grind coarse", "temp": "88–90°C" }
+  },
+  "coach": {
+    "audience": "professional baristas",
+    "voice": "direct, action-first, peer-to-peer",
+    "max_sentences": 1,
+    "max_actions": 1,
+    "include_rationale": false,
+    "rule": "Assume professional barista competence. State only the highest-leverage action. Omit standard technique, definitions, and rationale unless it changes execution."
+  },
+  "pouring": {
+    "increment_g": 5,
+    "rounding": "up",
+    "rule": "All displayed pour targets round up to the next 5 g. Recipe precision must never create impractical pour targets."
+  },
+  "optimisation": {
+    "sequence": ["baseline_recipe", "estimated_current_profile", "sensory_gap", "primary_objective", "bounded_adjustment", "diagnostic_next_step"],
+    "evidence_priority": ["current_cup", "similar_previous_brews", "coffee_equipment_model", "general_heuristics"],
+    "defects_first": true,
+    "max_primary_variables": 1,
+    "max_supporting_variables": 1,
+    "guardrails": {
+      "grind_calibrated_steps": 2,
+      "temperature_c": 2,
+      "ratio_units": 1,
+      "target_time_seconds": 20,
+      "agitation_levels": 1
+    },
+    "grind_mapping_rule": "Use grinder-specific values only when a calibration mapping exists; otherwise return qualitative direction and unavailable mapping."
+  },
+  "read": {
+    "_source": "Interpretation-Heuristics §2 — direct, action-first guidance. One highest-leverage move; no filler or explanatory rationale unless it changes the action.",
+    "process": {
+      "Washed": {
+        "s": ["Fruit and floral notes stay separate and legible", "Takes a fine grind and hot water without turning harsh"],
+        "c": ["Light body — it will not be syrupy", "Pour too hard or grind too fine and it dries the tongue (astringent)"],
+        "a": ["Grind ~1 click finer than your usual filter setting", "Pour at 4–5 g/s, in 2–3 even stages, keeping the bed level", "Keep total brew time near 2:30 so it stays lively"]
+      },
+      "Nitro Washed": {
+        "s": ["Very high flavour separation", "Bright, delicate top notes"],
+        "c": ["Body thins out fast if the pour is rushed", "Boiling water flattens the aromatics"],
+        "a": ["Grind fine, water 92–94°C", "Slow, low pours at 3–4 g/s to protect aromatics", "Short, even bloom"]
+      },
+      "Natural": {
+        "s": ["Heavy body and berry/tropical sweetness", "Still tastes sweet even slightly under-extracted"],
+        "c": ["Bed extracts unevenly → muddy or boozy cup", "Less flavour separation than washed"],
+        "a": ["Grind a step coarser to avoid muddiness", "Water 90–93°C", "Even, moderate pours at 6–7 g/s; keep the bed flat, no deep craters"]
+      },
+      "Honey": {
+        "s": ["Balanced body and sweetness", "Forgiving of small pour errors"],
+        "c": ["Can land in-between — neither bright nor heavy"],
+        "a": ["Grind medium, water 91–94°C", "Three even pours at 5–6 g/s"]
+      },
+      "Anaerobic": {
+        "s": ["Intense, unusual aromatics — tropical, winey, funky"],
+        "c": ["Turns boozy or solvent-like if over-extracted or too hot"],
+        "a": ["Grind medium-coarse, water 88–92°C", "Gentle pours at 4–5 g/s and shorter contact time"]
+      },
+      "Carbonic maceration": {
+        "s": ["Loud, wild fruit and ferment aromatics"],
+        "c": ["Fragile — tips into boozy fast"],
+        "a": ["Cooler water (88–91°C), gentle handling at 4–5 g/s", "Stop the brew a touch early"]
+      }
+    },
+    "roast": {
+      "Light": {
+        "s": ["Bright acidity and clear origin character"],
+        "c": ["Under-extracts easily → sour, hollow, salty", "The hardest roast to make taste sweet"],
+        "a": ["Grind finer than your default and use hot water (94–96°C)", "Pour at 5–6 g/s", "Lengthen contact time; a longer bloom helps reach the sweetness"]
+      },
+      "Medium-light": {
+        "s": ["Lively but starting to round out"],
+        "c": ["Can still under-extract and read tart"],
+        "a": ["Grind medium-fine, water 93–95°C", "Pour at 5–6 g/s"]
+      },
+      "Medium": {
+        "s": ["Widest margin for error", "Sweet and balanced without fuss"],
+        "c": [],
+        "a": ["Grind medium, water 92–94°C", "Pour at 5–6 g/s in even stages", "Brew close to the recipe as written"]
+      },
+      "Medium-dark": {
+        "s": ["Fuller body; chocolate and nut sweetness; low acidity"],
+        "c": ["Extracts fast → bitter if you push grind, heat, or time"],
+        "a": ["Grind a step coarser, water 90–92°C", "Pour at 6–7 g/s in fewer stages; keep total agitation low and shorten total time"]
+      },
+      "Dark": {
+        "s": ["Heavy body, bittersweet chocolate, very low acidity"],
+        "c": ["Over-extracts fast → ashy and bitter", "Origin character is mostly gone"],
+        "a": ["Grind coarse, water 88–90°C", "Pour at 6–7 g/s but keep total agitation minimal", "Short contact"]
+      }
+    },
+    "age": {
+      "Fresh (0–3 days)": {
+        "s": [],
+        "c": ["Heavy CO₂ off-gassing → gushing blooms and uneven extraction"],
+        "a": ["Use a longer or double bloom (up to 45s)", "Expect to grind finer as it settles over the week"]
+      },
+      "4–7 days": { "s": [], "c": ["Still off-gassing a little"], "a": ["Bloom 30–40s"] },
+      "8–14 days": { "s": ["Peak window — degassing settled, brews predictably"], "c": [], "a": [] },
+      "15–21 days": { "s": ["Peak window — stable and repeatable"], "c": [], "a": [] },
+      "22–30 days": { "s": [], "c": ["Aromatics starting to fade"], "a": ["Water a touch hotter and grind a touch finer to compensate"] },
+      "30+ days": { "s": [], "c": ["Past peak — muted, can taste papery"], "a": ["Hotter water and finer grind; manage expectations"] }
+    }
+  }
+}
