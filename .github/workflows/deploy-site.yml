@@ -1,0 +1,43 @@
+# Deploys brew-helper-site/ to Cloudflare Pages (brew-helper.pages.dev)
+# whenever main changes the site. Needs two repository secrets:
+#   CLOUDFLARE_API_TOKEN  (Cloudflare token with "Cloudflare Pages: Edit")
+#   CLOUDFLARE_ACCOUNT_ID
+# Until both exist the job skips instead of failing.
+name: Deploy site
+
+on:
+  push:
+    branches: [main]
+    paths: ['brew-helper-site/**']
+  workflow_dispatch:
+
+concurrency:
+  group: deploy-site
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check Cloudflare secrets
+        id: secrets
+        env:
+          CF_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CF_ACCOUNT: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+        run: |
+          if [ -n "$CF_TOKEN" ] && [ -n "$CF_ACCOUNT" ]; then
+            echo "ready=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "::warning::CLOUDFLARE_API_TOKEN / CLOUDFLARE_ACCOUNT_ID not set; skipping deploy."
+          fi
+
+      - uses: actions/checkout@v4
+        if: steps.secrets.outputs.ready == 'true'
+
+      - name: Deploy to Cloudflare Pages
+        if: steps.secrets.outputs.ready == 'true'
+        uses: cloudflare/wrangler-action@v3
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          command: pages deploy brew-helper-site --project-name=brew-helper --branch=main --commit-dirty=true
