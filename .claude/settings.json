@@ -1,0 +1,14 @@
+{
+  "hooks": {
+    "SessionStart": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "[ \"$CLAUDE_CODE_REMOTE\" = \"true\" ] || exit 0; cd \"$CLAUDE_PROJECT_DIR/Platform\" && { [ -d node_modules ] || npm ci --no-audit --no-fund >/dev/null 2>&1; } && echo 'Brew Helper: Platform dependencies ready (npm run release:check to verify).' || echo 'Brew Helper: npm ci failed in Platform/; run it manually.'"
+          }
+        ]
+      }
+    ]
+  }
+}

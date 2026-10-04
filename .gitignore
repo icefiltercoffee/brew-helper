@@ -20,7 +20,10 @@ dist/
 .cache/
 
 # Local tooling and generated analysis
-.claude/
+# (.claude/settings.json is shared: it sets up cloud/phone sessions)
+.claude/settings.local.json
+brew-helper-site/.claude/
+.site-history.git/
 graphify-out/
 
 # OS / editor junk

@@ -89,7 +89,7 @@ Do not treat a design plan, roadmap, wireframe, or proposal as authorisation to 
 ### One dashboard — do not create a second
 There is exactly **one** rendering surface: `brew-helper-site/index.html`. It is the Pages build output root and the deploy target. Never create a parallel dashboard copy, a "non-scroll version", or a second HTML implementation. If a variant seems needed, ask first.
 
-Deploy: `cd brew-helper-site && npx wrangler pages deploy . --project-name=brew-helper --branch=main --commit-dirty=true`
+Deploy: merging to `main` on GitHub deploys automatically (`.github/workflows/deploy-site.yml`, runs when `brew-helper-site/**` changes). Manual fallback from a Mac: `cd brew-helper-site && npx wrangler pages deploy . --project-name=brew-helper --branch=main --commit-dirty=true`. See §10.
 
 - Active principles are **human-controlled**. Never auto-promote candidates.
 - Do not hand-edit generated regions without understanding the regeneration path.
@@ -161,6 +161,40 @@ Before reporting completion:
 ## 9. Retired surfaces
 
 Do not reintroduce `Brew-Helper-Dashboard.html` or `Brew-Helper-Live.html`; `brew-helper-site/index.html` remains the only dashboard surface.
+
+---
+
+## 10. Repository, workflow and deploy (laptop and phone sessions)
+
+This folder is the GitHub repo `icefiltercoffee/brew-helper`. Sessions run either on Joseph's Mac (`~/Steven/Coffee`) or in a cloud clone started from his phone. Both follow this file; a cloud clone has nothing else.
+
+### Working rules (carried over from Joseph's workspace contract)
+- **Additive by default.** Do not delete, rename, retire, replace or broadly refactor anything unless Joseph names it in this session. "Improve X" never authorises removing part of X.
+- **Rewrites publish an omissions list.** Rebuilding a section lists what did *not* carry across, before it ships.
+- **No invented values.** Anything without a real source renders `unavailable`, `stale` or `needs refresh`.
+- **Class the change first:** content · presentation · behavior · data/integration · security/auth · deployment. Data, security and deployment changes need Joseph's explicit approval.
+- **Inventory protected functions before editing** the affected area (controls, routes, states, gates) and confirm each still works after.
+- **Nothing verifies itself.** Report what was checked and what was not.
+- **Conflicts are surfaced, never silently resolved.**
+- **Sealed.** Never connect Brew Helper to Steven OS, its Brain, or other projects.
+
+### Branches and deploy
+- Merging to `main` **publishes the live site** (brew-helper.pages.dev) when `brew-helper-site/` changed. "Build", "fix", "edit" never mean deploy.
+- So: work on a branch and open a pull request for Joseph to approve. Push to `main` directly only when Joseph says "deploy" / "ship it" for that change.
+- `.github/workflows/checks.yml` runs the engine checks on every PR; `deploy-site.yml` deploys on merge (secrets `CLOUDFLARE_API_TOKEN`, `CLOUDFLARE_ACCOUNT_ID` are set in the repo).
+- After a deploy, open https://brew-helper.pages.dev and confirm the change is live.
+
+### Build and test
+- Setup: `cd Platform && npm ci` (cloud sessions do this automatically via `.claude/settings.json`).
+- Engine checks: `cd Platform && npm run release:check` (typecheck + tests + golden evals). Run before every PR that touches `Platform/`.
+- Dashboard data: `python3 brew-helper-site/build/sync-brew-data.py` regenerates `brew-data.js` and the inline `BH:DATA` block in `index.html` from the Knowledge Repository (recipes, `Extraction-Model.json`, `Flavour-Lexicon.json`) and copies recipe visuals. Run after changing recipes, the model or the lexicon; never hand-edit the generated block.
+- Engine bundle: `cd Platform && npm run build:public-engine` rebuilds the engine and inlines it into `index.html` (between the `PLATFORM_ENGINE` markers).
+- No local server is needed: open `brew-helper-site/index.html` directly, or serve the folder with any static server.
+
+### Syncing the Mac copy
+Joseph double-clicks **`Get Phone Edits.command`** in this folder to pull changes made from the phone. Mac sessions should `git pull --rebase --autostash` before starting work.
+
+The site folder's pre-GitHub history is kept locally in `.site-history.git/` (not pushed).
 
 ---
 
